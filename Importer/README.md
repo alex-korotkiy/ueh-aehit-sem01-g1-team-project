@@ -1,0 +1,1 @@
+This folder is used for Importer utility (imports recommendations generated my model into website's datatabase)

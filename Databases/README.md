@@ -1,0 +1,1 @@
+This folder is used for database backups and SQL scripts
