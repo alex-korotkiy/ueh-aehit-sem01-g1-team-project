@@ -1,0 +1,1 @@
+This folder is for website templates and work with static html/css/js/images. Successful experiments and solutions will migrate to Website folder to be integrated with backend code

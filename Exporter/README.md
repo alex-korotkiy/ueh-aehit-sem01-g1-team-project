@@ -1,0 +1,1 @@
+This folder is used for Exporter utility (exports ratings from website's database for model training)
