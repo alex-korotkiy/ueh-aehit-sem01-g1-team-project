@@ -1,6 +1,6 @@
 Repo for Team Project
 
-Team members: Vlad Sperkach, Oleksandr Korotkyi
+Team members: Vlad Sperkach, Oleksandr Korotkyi, Islombek Akhmedov 
 
 Project idea:
 
