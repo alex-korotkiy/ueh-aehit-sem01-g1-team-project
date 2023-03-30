@@ -35,7 +35,7 @@
           <img src="./img/main-logo.png" alt="logo">
         </div>
         <div class="header-content-input">
-          <input class="content_input" oninput="return showicon()" type="text" placeholder="Search book" autofocus maxlength="50">
+          <input class="content_input" oninput="return showicon()" type="text" placeholder="Search book" maxlength="50">
           <div class="input_close">
             <span class="fa fa-close" title="delete"></span>
           </div>
@@ -72,9 +72,17 @@
       <section class="main_book-list">
         <div class="container">
           <div class="book_list-text">
-            <p class="list_text list_text--s">Sort by : Alphabetically, A-Z</p>
+            <p class="list_text list_text--s">Sort by : <button onclick="showList()" class="btn_show-list" id="btn_show-list" type="button">Alphabetically A-Z</button></p>
             <p class="list_text list_text--s">Showing 1 - 21 of 21 result</p>
             <p class="list_text list_text--s">Show : 21</p>
+            <div class="show_list" id="show_list">
+              <div class="show_list-inner">
+                <p class="show_list-text"><a class="show_list-text--link">Alphabetically Z-A</a></p>
+                <p class="show_list-text"><a class="show_list-text--link">By popularity</a></p>
+                <p class="show_list-text"><a class="show_list-text--link">By price: from low to high</a></p>
+                <p class="show_list-text"><a class="show_list-text--link">By price: from high to low</a></p>
+              </div>
+            </div>
           </div>
           <div class="book_list-inner">
             <div class="main-list--info">
@@ -125,7 +133,18 @@
             </div>
             <div class="main-list--info">
               <div class="img-box">
-                <img src="http://images.amazon.com/images/P/1853260673.01.MZZZZZZZ.jpg" alt="b5">
+                <img src="http://images.amazon.com/images/P/0520011171.01.MZZZZZZZ.jpg" alt="b5">
+                <p class="cart">Add to cart</p>
+              </div>
+              <div class="main_list--inner">
+                <h3 class="main_title main-title list-seven">A New Translation</h3>
+                <p class="main_name main-name">Mary Barnard</p>
+                <p class="main_price main-price">65.00$</p>
+              </div>
+            </div>
+            <div class="main-list--info">
+              <div class="img-box">
+                <img src="http://images.amazon.com/images/P/1853260673.01.MZZZZZZZ.jpg" alt="b6">
                 <p class="cart">Add to cart</p>
               </div>
               <div class="main_list--inner">
@@ -136,24 +155,13 @@
             </div>
             <div class="main-list--info">
               <div class="img-box">
-                <img src="http://images.amazon.com/images/P/0060977477.01.MZZZZZZZ.jpg" alt="b6">
+                <img src="http://images.amazon.com/images/P/0345465083.01.MZZZZZZZ.jpg" alt="b7">
                 <p class="cart">Add to cart</p>
               </div>
               <div class="main_list--inner">
-                <h3 class="main_title main-title">Men Against the Sea</h3>
-                <p class="main_name main-name">Sebastian Junger</p>
-                <p class="main_price main-price">40.00$</p>
-              </div>
-            </div>
-            <div class="main-list--info">
-              <div class="img-box">
-                <img src="http://images.amazon.com/images/P/0520011171.01.MZZZZZZZ.jpg" alt="b7">
-                <p class="cart">Add to cart</p>
-              </div>
-              <div class="main_list--inner">
-                <h3 class="main_title main-title list-seven">A New Translation</h3>
-                <p class="main_name main-name">Mary Barnard</p>
-                <p class="main_price main-price">65.00$</p>
+                <h3 class="main_title main-title list-seven">Ballantine Books</h3>
+                <p class="main_name main-name">Laura Hillenbrand</p>
+                <p class="main_price main-price">38.99$</p>
               </div>
             </div>
             <div class="main-list--info">

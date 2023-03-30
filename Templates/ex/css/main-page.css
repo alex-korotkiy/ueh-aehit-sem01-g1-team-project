@@ -198,6 +198,49 @@ html, body{
     transform: scale(1.3);
   }
 
+  /* =========================main-sort by===================== */
+.btn_show-list{
+font-weight: 700;
+font-size: 16px;
+line-height: 32px;
+color: #393280;
+border: 0.1px solid #393280;
+background-color: transparent;
+/* background-color: #FCECEC; */
+border-radius: 5px;
+user-select: none; 
+cursor: pointer;
+}
+.show_list{
+display: none;
+position: absolute;
+top: 55px;
+right: 580px;
+width: 154px;
+height: 210px;
+border-radius: 3px;
+border: 0.5px solid #393280;
+background-color: #FCECEC;
+z-index: 1000;
+}
+.show_list-text--link{
+font-weight: 700;
+font-size: 15px;
+color: #393280;
+line-height: 18px;
+cursor: pointer;
+transition: all .3s ease;
+}
+.show_list-text--link:hover{
+color: #ED553B;
+}
+.show_list-text{
+  padding: 3px 5px 3px 5px;
+}
+.active{
+background-color: #FCECEC;
+}
+
   /* =========================main-list======================= */
 
 .book_list-text{
@@ -206,13 +249,14 @@ padding-left: 650px;
 align-items: center;
 justify-content: center;
 margin-bottom: 10px;
+position: relative;
 }
   .list_text--s{
 font-weight: 700;
 font-size: 16px;
 line-height: 32px;
 color: #393280;
-margin-right: 130px;
+margin-right: 80px;
 user-select: none;
 }
 .list_text--s:last-child{

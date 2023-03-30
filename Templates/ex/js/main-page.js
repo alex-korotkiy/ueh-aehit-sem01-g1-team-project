@@ -18,7 +18,27 @@ function showicon () {
     document.body.classList.remove("active")
   })
 }
+/* =========================main-sort by============================= */
 
+function showList() {
+  var showList = document.getElementById('show_list');
+
+  if(showList.style.display === "none") {
+    showList.style.display = "block"
+  } else {
+    showList.style.display = "none";
+  }
+}
+
+
+const btnActive = document.querySelectorAll('.btn_show-list');
+
+btnActive.forEach(btnActive => {
+  btnActive.addEventListener('click', function(){
+    document.querySelector('.active')?.classList.remove('active')
+    btnActive.classList.add('active');
+  })
+})
 
 /* =========================main-slider============================= */
 
@@ -41,7 +61,6 @@ $(function(){
     e.preventDefault()
     $('.like_inner').slick('slickNext')
   })
-  
   
   })
 
