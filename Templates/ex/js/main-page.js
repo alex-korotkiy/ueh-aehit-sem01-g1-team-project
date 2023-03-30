@@ -1,9 +1,26 @@
+/* =========================main-scroll============================= */
+
 window.addEventListener("scroll", function(){
   var header = document.querySelector("header");
   header.classList.toggle("sticky", window.scrollY > 0)
 })
 
-/* =========================like-slider============================= */
+/* =========================main-input============================= */
+function showicon () {
+  const inputContent = document.querySelector(".content_input").value;
+  const inputClose = document.querySelector(".input_close");
+
+  if(inputContent.length <= 0) document.body.classList.remove("active");
+  else document.body.classList.add("active");
+
+  inputClose.addEventListener("click", () =>{
+    document.querySelector(".content_input").value = "";
+    document.body.classList.remove("active")
+  })
+}
+
+
+/* =========================main-slider============================= */
 
 $(function(){
 
@@ -27,4 +44,5 @@ $(function(){
   
   
   })
+
   

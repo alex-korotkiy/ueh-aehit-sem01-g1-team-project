@@ -1,3 +1,5 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css);
+
 html, body{
 margin: 0;
 font-family: 'Inter', sans-serif;
@@ -102,6 +104,9 @@ transition: color 400ms ease;
   /* text-transform: capitalize; */
   color: #393280;
 }
+.blog_header-link{
+  font-weight: bold;
+}
 
 /* =========================book-info======================= */
 
@@ -143,34 +148,9 @@ letter-spacing: 1.87429px;
 color: #173F5F;
 margin-bottom: 10px;
 }
-.book_rate {
-  margin-bottom: 40px;
-  user-select: none;
-}
 
 .book_inner{
   margin-bottom: 60px;
-}
-
-.star{
-  font-size: 30px;
-  color: #FECB1C;
-  background-color: unset;
-  border: none;
-  padding-left: 0;
-}
-.star:hover{
-  cursor: pointer;
-}
-
-.current_rating{
-font-size: 18px;
-font-weight: 600;
-line-height: 19px;
-letter-spacing: 1.05429px;
-color: #222;
-margin-top: 5px;
-margin-left: 2px;
 }
 
 .book_bio {
@@ -180,6 +160,72 @@ line-height: 30px;
 letter-spacing: 1.28857px;
 color: #767070;
 }
+
+/* =========================book-rate============================= */
+.star{
+  width: 250px;
+color: #173F5F;
+position: relative;
+
+}
+#rating-value{
+  width: 250px;
+  height: 40px;
+  font-size: 24px;
+}
+.rating{
+  border: none;
+  padding-left: 0;
+}
+.rating > input{
+  display: none;
+}
+.rating > label::before{
+  font-family: FontAwesome;
+  content: '\f005';
+  margin: 5px;
+font-size: 28px;
+display: inline-block;
+cursor: pointer;
+}
+.rating > .half::before{
+  content: '\f089';
+  position: absolute;
+  cursor: pointer;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+  cursor: pointer;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label{
+color: #FECB1C;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label
+{
+color: #FECB1C;
+}
+
+fieldset{
+position: absolute;
+top: -5px;
+left: -10px;
+}
+.rating_num{
+  margin-top: 45px;
+  user-select: none;
+}
+
+
+
 
 /* =========================book-like============================= */
 

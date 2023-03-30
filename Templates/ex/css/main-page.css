@@ -99,6 +99,9 @@ html, body{
     /* text-transform: capitalize; */
     color: #393280;
   }
+  .home_header-link{
+    font-weight: bold;
+  }
   
   /* =========================main-content======================= */
 .header_content{
@@ -119,18 +122,47 @@ html, body{
     margin-right: 400px;
     position: relative;
   }
-  .content_input{
-    border-radius: 20px;
+
+  .input_close{
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 520px;
+    color: red;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+  }
+  .input_close:hover{
+    transform: scale(1.3) rotate(-70deg);
+  }
+
+  .active .input_close{
+    display: block;
+  }
+
+  .header-content-input input{
     border: none;
+    border-radius: 20px;
+    background-color: #e8e8e8;
+    box-shadow: 5px 5px 10px #c5c5c5, -20px -20px 60px #fff;
+    color: #222;
     padding: 15px 10px 15px 30px ;
-    background-color: #F6F6F6;
-    min-width: 610px;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.12em;
     text-transform: capitalize;
-    color: #a5a0a0;
+    min-width: 610px;
+    transition: .3s;
+  }
+  .header-content-input input:focus{
+    outline-color: #e8e8e8;
+    background-color: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #fff;
+    transition: .3s;
+  }
+  .content_input{
+    max-width: 350px;
   }
 
   .header_content-items {
@@ -191,7 +223,7 @@ user-select: none;
   grid-template: repeat(3, auto) / repeat(7, auto);
   justify-items: center;
   justify-content: stretch;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
   grid-gap: 10px;
 }
 
@@ -234,6 +266,33 @@ color: #ED553B;
 .main-list--info .orders img{
   padding-left: 0;
 }
+
+.main_list-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.main_list-left--arrow {
+  cursor: pointer;
+  margin-right: 30px;
+  transition: all .4s ease-in-out;
+}
+.main_list-roght--arrow {
+  cursor: pointer;
+  transform: translateY(-0.4px);
+}
+.main_list-left--arrow path,
+.main_list-roght--arrow path{
+  transition: all .3s ease-in-out;
+}
+.main_list-left--arrow:hover path,
+.main_list-roght--arrow:hover path{
+  fill: #ED553B;
+}
+
+
 
   /* =========================main-like======================= */
   .like_inner{

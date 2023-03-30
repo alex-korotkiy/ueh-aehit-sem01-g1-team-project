@@ -18,13 +18,13 @@
         <ul class="header_nav-lists">
           <li class="header_nav-item"><a class="header_nav-link text-nav" href="./main-page.html" target="_self">Home</a></li>
           <span class="stick_header text-nav"> | </span>
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="#" target="_self">Blog</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav blog_header-link" href="#" target="_self">Book</a></li>
           <span class="stick_header text-nav"> | </span>
           <li class="header_nav-item"><a class="header_nav-link text-nav" href="#">Authors</a></li>
           <span class="stick_header text-nav"> | </span>
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_blank">About us</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">About us</a></li>
           <span class="stick_header text-nav"> | </span>
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="/about-us.html" target="_blank">Contact</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="/about-us.html" target="_parent">Contact</a></li>
         </ul>
       </div>
     </header>
@@ -40,13 +40,21 @@
               <div class="details-inner">
                 <p class="book_text1">Featured Book of the week</p>
                 <p class="book_name">Ann Patchett</p>
-                <div class="book_rate">
-                  <button class="star"> &#9734; </button>
-                  <button class="star"> &#9734; </button>
-                  <button class="star"> &#9734; </button>
-                  <button class="star"> &#9734; </button>
-                  <button class="star"> &#9734; </button>
-                  <p class="current_rating">0 of 5</p>
+                <div class="star">
+                  <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="awesome"></label>
+                    <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                    <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                    <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                    <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full" title="enjoyable"></label>
+                    <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                    <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                    <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                    <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                    <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half" title="dislike"></label>
+                  </fieldset>
+                  <br>
+                  <h3 id="rating-value" class="rating_num"> 0 of 5</h3>
                 </div>
                 <p class="book_bio">Jump start your book reading by quickly check through the popular book categories.
                   1000+ books are published by different authors everyday. <br> Harper Collins Publishers in 2001.</p>

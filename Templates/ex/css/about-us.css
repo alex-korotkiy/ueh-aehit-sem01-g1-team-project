@@ -100,7 +100,13 @@ html, body{
     /* text-transform: capitalize; */
     color: #393280;
   }
-  
+  .aboutus_header-link{
+    font-weight: bold;
+  }
+  /* .contact_header-link{
+    font-weight: bold;
+  }
+   */
 /* =========================about-info======================= */
 .about_inner {
   padding-top: 50px;

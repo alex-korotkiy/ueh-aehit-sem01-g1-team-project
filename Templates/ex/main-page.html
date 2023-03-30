@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./img/footer-logo.png" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./css/main-page.css">
   <title>main page</title>
 </head>
@@ -16,15 +17,15 @@
     <header class="header">
       <div class="header_nav">
         <ul class="header_nav-lists">
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="#">Home</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav home_header-link" href="#">Home</a></li>
           <span class="stick_header text-nav"> | </span>
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./book-info.html" >Blog</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./book-info.html" >Book</a></li>
           <span class="stick_header text-nav"> | </span>
           <li class="header_nav-item"><a class="header_nav-link text-nav" href="#">Authors</a></li>
           <span class="stick_header text-nav"> | </span>
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_blank">About us</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">About us</a></li>
           <span class="stick_header text-nav"> | </span>
-          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_blank">Contact</a></li>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">Contact</a></li>
         </ul>
       </div>
     </header>
@@ -34,8 +35,11 @@
           <img src="./img/main-logo.png" alt="logo">
         </div>
         <div class="header-content-input">
-          <input class="content_input" type="text" placeholder="Search book">
-          <button class="header_content-search" type="submit">&#x1F50E;</button>
+          <input class="content_input" oninput="return showicon()" type="text" placeholder="Search book" autofocus maxlength="50">
+          <div class="input_close">
+            <span class="fa fa-close" title="delete"></span>
+          </div>
+          <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
         </div>
         <ul class="header_content-items">
           <li class="header_content-self"><a class="header_content-link header_content-link--user" href="#">
@@ -307,6 +311,18 @@
               </div>
             </div>
           </div>
+          <div class="main_list-arrow">
+            <a class="main_list-left--arrow">
+              <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.46271 14.0059L7.8174 12.5916L3.69655 8.38508L23 8.38508L23 6.41942L3.69655 6.41942L7.81644 2.21195L6.46271 0.798641L0 7.40225L6.46271 14.0059Z" fill="#393280"/>
+                </svg>
+            </a>
+            <a class="main_list-roght--arrow">
+              <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.5373 0.744385L15.1826 2.15867L19.3035 6.36517H0V8.33082H19.3035L15.1836 12.5383L16.5373 13.9516L23 7.34799L16.5373 0.744385Z" fill="#393280"/>
+                </svg>
+            </a>
+          </div>
         </div>
       </section>
       <section class="main-like">
@@ -439,8 +455,6 @@
                     </svg>
                 </a>
               </div>
-              <!-- <span class="circle" onclick="currentSlides(1)"></span>
-              <span class="circle" onclick="currentSlides(2)"></span> -->
             </div>
           </div>
         </div>
