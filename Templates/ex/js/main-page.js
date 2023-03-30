@@ -30,7 +30,6 @@ function showList() {
   }
 }
 
-
 const btnActive = document.querySelectorAll('.btn_show-list');
 
 btnActive.forEach(btnActive => {

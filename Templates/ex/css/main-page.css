@@ -237,7 +237,7 @@ color: #ED553B;
 .show_list-text{
   padding: 3px 5px 3px 5px;
 }
-.active{
+.btn_show-list .active{
 background-color: #FCECEC;
 }
 
