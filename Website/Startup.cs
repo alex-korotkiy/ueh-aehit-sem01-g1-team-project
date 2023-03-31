@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Website.Infrastructure.Filters;
+using Website.Infrastructure.ModelBinding;
 using Website.Infrastructure.Repositories;
 
 namespace Website
@@ -27,10 +28,13 @@ namespace Website
             string connectionString = Configuration.GetConnectionString("siteDb");
 
             services.AddTransient<IBooksRepository, BooksRepository>(provider => new BooksRepository(connectionString));
+            services.AddTransient<IUsersRepository, UsersRepository>(provider => new UsersRepository(connectionString));
+            services.AddTransient<IRecommendationsRepository, RecommendationsRepository>(provider => new RecommendationsRepository(connectionString));
             services.AddControllersWithViews();
             services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(UserIdFilter));
+                options.ValueProviderFactories.Add(new CookieValueProviderFactory());
             });
         }
 
