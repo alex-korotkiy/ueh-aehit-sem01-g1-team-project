@@ -30,6 +30,8 @@ namespace Website
             services.AddTransient<IBooksRepository, BooksRepository>(provider => new BooksRepository(connectionString));
             services.AddTransient<IUsersRepository, UsersRepository>(provider => new UsersRepository(connectionString));
             services.AddTransient<IRecommendationsRepository, RecommendationsRepository>(provider => new RecommendationsRepository(connectionString));
+            services.AddTransient<IRatingsRepository, RatingsRepository>(provider => new RatingsRepository(connectionString));
+
             services.AddControllersWithViews();
             services.AddMvc(options =>
             {

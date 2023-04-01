@@ -19,6 +19,7 @@ namespace Website.Models.DbDto
         public string Image_URL_M { get; set; }
         public string Image_URL_L { get; set; }
         public decimal? Price { get; set; }
+        public decimal? Rating { get; set; }
 
     }
 }

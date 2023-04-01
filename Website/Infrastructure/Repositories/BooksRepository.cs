@@ -22,6 +22,7 @@ namespace Website.Infrastructure.Repositories
 
             var sortType = (BookSortType)request.SortType;
 
+            var baseSelect = $"SELECT bl.*,";
             var fromPart = "vBooksList bl";
 
             if (sortType == BookSortType.Popularity)
@@ -44,10 +45,17 @@ namespace Website.Infrastructure.Repositories
                 }
             }
 
+            if(request.RatedOnly!=0 && request.UserId != null)
+            {
+                fromPart = fromPart + " JOIN (SELECT ItemId, Rating FROM Ratings WHERE UserId = @UserId) ur ON bl.Id = ur.ItemId";
+                baseSelect = baseSelect + " ur.Rating,";
+            }
+
             var orderBy = sortType.ToString();
             if (request.SortOrder != 0) orderBy = orderBy + " DESC";
 
-            var baseSelect = $"SELECT bl.*, RowNumber = ROW_NUMBER() OVER (ORDER BY {orderBy}), TotalCount = COUNT(1) OVER() FROM {fromPart}";
+            
+            baseSelect = baseSelect + $" RowNumber = ROW_NUMBER() OVER (ORDER BY {orderBy}), TotalCount = COUNT(1) OVER() FROM {fromPart}";
             return $"WITH x AS ({baseSelect}) SELECT * FROM x WHERE RowNumber >= @StartRow AND RowNumber <= @EndRow ORDER BY RowNumber";
 
         }
@@ -72,7 +80,7 @@ namespace Website.Infrastructure.Repositories
             var sql = GetSearchSql(request);
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<BookInfo>(sql, new { request.Text, StartRow = request.Start, EndRow = endRowNumber }).ToList();
+                return db.Query<BookInfo>(sql, new { request.Text, StartRow = request.Start, EndRow = endRowNumber, request.UserId }).ToList();
             }
         }
 

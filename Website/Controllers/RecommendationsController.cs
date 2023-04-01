@@ -33,5 +33,6 @@ namespace Website.Controllers
 
             return Json(recommendationsRepository.GetForUser(userInfo.Id.Value));
         }
+
     }
 }

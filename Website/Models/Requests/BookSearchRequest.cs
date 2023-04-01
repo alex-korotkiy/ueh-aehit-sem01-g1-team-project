@@ -14,7 +14,11 @@ namespace Website.Models.Requests
             Count = 10;
             SortOrder = 0;
         }
+
+        public long? UserId { get; set; }
         public string Text { get; set; }
+
+        public int RatedOnly { get; set; }
         public int? SortType { get; set; }
         public int SortOrder { get; set; }
 
@@ -27,6 +31,11 @@ namespace Website.Models.Requests
                 if (textSearch)
                 {
                     SortType = (int)BookSortType.TotalRank;
+                    SortOrder = 1;
+                }
+                else
+                {
+                    SortType = (int)BookSortType.YearOfPublication;
                     SortOrder = 1;
                 }
             }
