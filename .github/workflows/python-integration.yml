@@ -1,6 +1,6 @@
 name: Model integration tests
 
-on: []
+on: [workflow_dispatch]
 
 jobs:
   build:
