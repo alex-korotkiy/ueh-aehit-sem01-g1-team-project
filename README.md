@@ -1,6 +1,6 @@
 Repo for Team Project
 
-Team members: Vlad Sperkach, Oleksandr Korotkyi, Islombek Akhmedov, Hashim Al-Zureikat, Rahim Asadov
+Team members: Vlad Sperkach, Oleksandr Korotkyi, Islombek Akhmedov, Hashim Al-Zureikat, Rahim Asadov, Kamran Akhundov
 
 Project idea:
 
