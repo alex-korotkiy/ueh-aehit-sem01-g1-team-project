@@ -1,8 +1,54 @@
-﻿@{
+﻿@using Website.Models.DbDto;
+@model List<BookInfo>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="main_book-list">
+    <div class="container">
+        <div class="book_list-text">
+            <p class="list_text list_text--s">Sort by : <button onclick="showList()" class="btn_show-list" id="btn_show-list" type="button">Alphabetically A-Z</button></p>
+            <p class="list_text list_text--s">Showing 1 - 21 of 21 result</p>
+            <p class="list_text list_text--s">Show : 21</p>
+            <div class="show_list" id="show_list">
+                <div class="show_list-inner">
+                    <p class="show_list-text"><a class="show_list-text--link">Alphabetically Z-A</a></p>
+                    <p class="show_list-text"><a class="show_list-text--link">By popularity</a></p>
+                    <p class="show_list-text"><a class="show_list-text--link">By price: from low to high</a></p>
+                    <p class="show_list-text"><a class="show_list-text--link">By price: from high to low</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="book_list-inner">
+        @foreach (var book in Model)
+        {
+            <div class="main-list--info">
+                <div class="img-box">
+                    <a href="./book-info.html" target="_parent">
+                        <img src="@book.Image_URL_M" alt="b1">
+                        <p class="cart">Add to cart</p>
+                    </a>
+                </div>
+                <div class="main_list--inner">
+                    <h3 class="main_title ">@book.Title</h3>
+                    <p class="main_name">@book.Author</p>
+                    <p class="main_price ">$@book.Price</p>
+                </div>
+            </div>
+        }
+        </div>
+        <div class="main_list-arrow">
+            <a class="main_list-left--arrow">
+                <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.46271 14.0059L7.8174 12.5916L3.69655 8.38508L23 8.38508L23 6.41942L3.69655 6.41942L7.81644 2.21195L6.46271 0.798641L0 7.40225L6.46271 14.0059Z" fill="#393280" />
+                </svg>
+            </a>
+            <a class="main_list-roght--arrow">
+                <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.5373 0.744385L15.1826 2.15867L19.3035 6.36517H0V8.33082H19.3035L15.1836 12.5383L16.5373 13.9516L23 7.34799L16.5373 0.744385Z" fill="#393280" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+

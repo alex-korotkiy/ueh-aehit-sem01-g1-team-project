@@ -11,7 +11,7 @@ namespace Website.Models.Requests
         public BookSearchRequest()
         {
             Start = 1;
-            Count = 10;
+            Count = 21;
             SortOrder = 0;
         }
 
