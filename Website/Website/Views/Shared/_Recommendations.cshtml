@@ -1,118 +1,27 @@
-﻿<section class="main-like">
+﻿@using Website.Models.DbDto;
+<section class="main-like">
     <div class="container">
+        @{ 
+            var recommendations = Model as List<BookInfo>;
+            if (recommendations != null)
+            {
         <div class="like_content">
             <h2 class="like_header text-header">You might also enjoy</h2>
             <div class="like_inner">
+                @foreach (var book in recommendations)
+                {
                 <div class="like_info">
                     <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0345424719.01.MZZZZZZZ.jpg" alt="book1">
+                        <img src="@book.Image_URL_M" alt="book1">
                         <p class="cart">Add to cart</p>
                     </div>
                     <div class="like_info-inner">
-                        <h3 class="info_title i-title">A Widow for One Year</h3>
-                        <p class="info_name i-name">JOHN IRVING</p>
-                        <p class="info_price i-price">40.00$</p>
+                        <h3 class="info_title i-title">@book.Title</h3>
+                        <p class="info_name i-name">@book.Author</p>
+                        <p class="info_price i-price">$@book.Price</p>
                     </div>
                 </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/1877727083.01.MZZZZZZZ.jpg" alt="book2">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">Recent Poems</h3>
-                        <p class="info_name i-name">Roberto Juarroz</p>
-                        <p class="info_price i-price">55.00$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/8483002523.01.MZZZZZZZ.jpg" alt="book3">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">La mirada del tafur</h3>
-                        <p class="info_name i-name">Ferran Torrent</p>
-                        <p class="info_price i-price">20.00$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0345335465.01.MZZZZZZZ.jpg" alt="book4">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">Dragonriders of Pern</h3>
-                        <p class="info_name i-name">Anne McCaffrey</p>
-                        <p class="info_price i-price">30.00$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0515118656.01.MZZZZZZZ.jpg" alt="ex5">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title last">The Cove</h3>
-                        <p class="info_name i-name lname">Catherine Coulter</p>
-                        <p class="info_price i-price">49.00$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0385490992.01.MZZZZZZZ.jpg" alt="book5">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">The Street Lawyer</h3>
-                        <p class="info_name i-name">John Grisham</p>
-                        <p class="info_price i-price">35.00$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0811203220.01.MZZZZZZZ.jpg" alt="book6">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">Still the Humming bird</h3>
-                        <p class="info_name i-name">Henry Miller</p>
-                        <p class="info_price i-price">60.00$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0385337639.01.MZZZZZZZ.jpg" alt="book8">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">Crow Lake (Book Club)</h3>
-                        <p class="info_name i-name">Mary Lawson</p>
-                        <p class="info_price i-price">24.99$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0330332775.01.MZZZZZZZ.jpg" alt="book9">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">Pride and Prejudice</h3>
-                        <p class="info_name i-name">Jane Austen</p>
-                        <p class="info_price i-price">49.99$</p>
-                    </div>
-                </div>
-                <div class="like_info">
-                    <div class="img-box">
-                        <img src="http://images.amazon.com/images/P/0345404793.01.MZZZZZZZ.jpg" alt="book10">
-                        <p class="cart">Add to cart</p>
-                    </div>
-                    <div class="like_info-inner">
-                        <h3 class="info_title i-title">Protect and Defend</h3>
-                        <p class="info_name i-name">Richard North Patterson</p>
-                        <p class="info_price i-price">38.99$</p>
-                    </div>
-                </div>
+                }
             </div>
             <hr>
             <div class="like-circle">
@@ -130,5 +39,12 @@
                 </div>
             </div>
         </div>
+
+                }
+            else
+            {
+
+            }
+            }
     </div>
 </section>

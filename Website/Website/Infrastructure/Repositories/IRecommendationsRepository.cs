@@ -8,6 +8,6 @@ namespace Website.Infrastructure.Repositories
 {
     public interface IRecommendationsRepository
     {
-        List<BookInfo> GetForUser(long userId);
+        List<BookInfo> GetForUser(long? userId);
     }
 }

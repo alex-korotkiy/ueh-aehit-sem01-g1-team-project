@@ -20,22 +20,22 @@
             </div>
         </div>
         <div class="book_list-inner">
-        @foreach (var book in Model)
-        {
-            <div class="main-list--info">
-                <div class="img-box">
-                    <a href="./book-info.html" target="_parent">
-                        <img src="@book.Image_URL_M" alt="b1">
-                        <p class="cart">Add to cart</p>
-                    </a>
+            @foreach (var book in Model)
+            {
+                <div class="main-list--info">
+                    <div class="img-box">
+                        <a href="./book-info.html" target="_parent">
+                            <img src="@book.Image_URL_M" alt="b1">
+                            <p class="cart">Add to cart</p>
+                        </a>
+                    </div>
+                    <div class="main_list--inner">
+                        <h3 class="main_title ">@book.Title</h3>
+                        <p class="main_name">@book.Author</p>
+                        <p class="main_price ">$@book.Price</p>
+                    </div>
                 </div>
-                <div class="main_list--inner">
-                    <h3 class="main_title ">@book.Title</h3>
-                    <p class="main_name">@book.Author</p>
-                    <p class="main_price ">$@book.Price</p>
-                </div>
-            </div>
-        }
+            }
         </div>
         <div class="main_list-arrow">
             <a class="main_list-left--arrow">

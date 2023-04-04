@@ -73,7 +73,7 @@
         </div>
         <main>
             @RenderBody()
-            @await Html.PartialAsync("~/Views/Shared/_Recommendations.cshtml")
+            @await Html.PartialAsync("~/Views/Shared/_Recommendations.cshtml", ViewData["Recommendations"])
         </main>
         <footer class="footer">
             <div class="container">

@@ -14,12 +14,16 @@ namespace Website.Infrastructure.Repositories
         public RecommendationsRepository(string connString) : base(connString)
         {
         }
-        public List<BookInfo> GetForUser(long userId)
+        public List<BookInfo> GetForUser(long? userId)
         {
             var sql = @"IF EXISTS(SELECT 1 FROM UserRecommendations where UserId = @userId)
                 SELECT bl.* FROM vBooksList bl JOIN (SELECT * FROM UserRecommendations where UserId = @userId) ur
                 ON bl.Id = ur.ItemId
                 ORDER BY ur.Id
+                ELSE
+                SELECT bl.* FROM vBooksList bl JOIN DefaultRecommendations dr
+                ON bl.Id = dr.ItemId
+                ORDER BY dr.Id
                 ";
             using (IDbConnection db = new SqlConnection(connectionString))
             {

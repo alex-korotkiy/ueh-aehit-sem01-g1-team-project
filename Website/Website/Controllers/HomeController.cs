@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Website.Infrastructure.ModelBinding;
 using Website.Infrastructure.Repositories;
 using Website.Models;
+using Website.Models.DbDto;
 using Website.Models.Requests;
 
 namespace Website.Controllers
@@ -17,24 +18,33 @@ namespace Website.Controllers
         private readonly ILogger<HomeController> _logger;
         IBooksRepository booksRepository;
         IUsersRepository usersRepository;
+        IRecommendationsRepository recommendationsRepository;
 
-        public HomeController(ILogger<HomeController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo)
+        public HomeController(ILogger<HomeController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo)
         {
             _logger = logger;
             booksRepository = booksRepo;
             usersRepository = usersRepo;
+            recommendationsRepository = recoRepo;
         }
 
         public IActionResult Index([FromCookie] Guid? UserId, BookSearchRequest request)
         {
-            if (UserId != null & request.RatedOnly != 0)
+            long? lngUserId = null;
+
+            if (UserId != null)
             {
                 var user = usersRepository.GetByUniqueId(UserId.Value);
-                if (user != null) request.UserId = user.Id;
+                if (user != null)
+                {
+                    lngUserId = user.Id;
+                    request.UserId = user.Id;
+                }
             }
 
-            var list = booksRepository.Search(request);
+            ViewData["Recommendations"] = recommendationsRepository.GetForUser(lngUserId);
 
+            var list = booksRepository.Search(request);
             return View(list);
         }
 
