@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Website.Models.Enums
 {
-    public enum BookSortType
+    public enum BookUISortType
     {
-        Title = 1,
-        TotalRank = 2,
+        Relevance = 0,
+        TitleAsc = 1,
+        TitleDesc = 2,
         Popularity = 3,
-        Price = 4,
-        Author = 5,
-        YearOfPublication = 6,
+        PriceAsc = 4,
+        PriceDesc = 5,
     }
 }
