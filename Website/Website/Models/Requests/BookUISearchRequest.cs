@@ -17,6 +17,11 @@ namespace Website.Models.Requests
         public int RatedOnly { get; set; }
         public int? SortType { get; set; }
 
+        public new BookUISearchRequest MemberwiseClone()
+        {
+            return base.MemberwiseClone() as BookUISearchRequest;
+        }
+
 
     }
 }

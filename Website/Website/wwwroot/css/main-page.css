@@ -217,7 +217,7 @@ position: absolute;
 top: 55px;
 right: 580px;
 width: 154px;
-height: 210px;
+height: auto;
 border-radius: 3px;
 border: 0.5px solid #393280;
 background-color: #FCECEC;

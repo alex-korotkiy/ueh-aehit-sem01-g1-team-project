@@ -11,6 +11,7 @@ using Website.Models;
 using Website.Models.Converters;
 using Website.Models.DbDto;
 using Website.Models.Requests;
+using Website.Models.Web;
 
 namespace Website.Controllers
 {
@@ -48,7 +49,7 @@ namespace Website.Controllers
             ViewData["Recommendations"] = recommendationsRepository.GetForUser(lngUserId);
 
             var list = booksRepository.Search(searchRequest);
-            return View(list);
+            return View(new BooksSearchAndResult() { Request = request, Result = list });
         }
 
         public IActionResult Privacy()
