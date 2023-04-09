@@ -19,8 +19,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy pandas
+          pip install safety numpy pandas
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run tests
         run: |
           python -m unittest discover -s ./Models/U2U -p '*test*.py' -v
+      - name: Safety check
+        run: |
+          safety check
