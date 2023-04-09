@@ -8,7 +8,7 @@ using Website.Infrastructure.Repositories;
 
 namespace Website.Controllers
 {
-    public class BookController : Controller
+    public class BookController : BaseController
     {
         IBooksRepository booksRepository;
         IUsersRepository usersRepository;

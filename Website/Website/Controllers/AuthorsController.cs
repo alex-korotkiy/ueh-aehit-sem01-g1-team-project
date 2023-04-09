@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Website.Controllers
 {
-    public class About : Controller
+    public class AuthorsController : BaseController
     {
         public IActionResult Index()
         {

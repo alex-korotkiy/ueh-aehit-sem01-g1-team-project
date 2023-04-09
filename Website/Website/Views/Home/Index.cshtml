@@ -23,11 +23,13 @@
                 <img src="/img/main-logo.png" alt="logo">
             </div>
             <div class="header-content-input">
-                <input class="content_input" oninput="return showicon()" type="text" placeholder="Search book" maxlength="50" value="@Model.Request.Text">
-                <div class="input_close">
-                    <span class="fa fa-close" title="delete"></span>
-                </div>
-                <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
+                <form>
+                    <input class="content_input" oninput="return showicon()" type="text" name="Text" placeholder="Search book" maxlength="150" value="@Model.Request.Text">
+                    <div class="input_close">
+                        <span class="fa fa-close" title="delete"></span>
+                    </div>
+                    <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
+                </form>
             </div>
             <ul class="header_content-items">
                 <li class="header_content-self">

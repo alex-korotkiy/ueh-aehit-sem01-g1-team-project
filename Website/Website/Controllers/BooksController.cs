@@ -9,7 +9,7 @@ using Website.Models.Requests;
 
 namespace Website.Controllers
 {
-    public class BooksController : Controller
+    public class BooksController : BaseController
     {
         IBooksRepository booksRepository;
         IUsersRepository usersRepository;
