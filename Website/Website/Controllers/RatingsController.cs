@@ -25,11 +25,6 @@ namespace Website.Controllers
         [HttpPut]
         public IActionResult Set([FromCookie][Required] Guid? UserId, [FromBody] SetRatingRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                Response.StatusCode = 422;
-                return ShowModelErrors(ModelState);
-            }
 
             var userInfo = new UserInfo { UniqueId = UserId.Value };
             usersRepository.Add(userInfo);
