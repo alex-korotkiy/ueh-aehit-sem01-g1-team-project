@@ -10,6 +10,7 @@ namespace Website.Controllers
 {
     public class BaseApiController : Controller
     {
+        [NonAction]
         public IActionResult ShowModelErrors(ModelStateDictionary modelState)
         {
 
