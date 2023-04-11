@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Website.Controllers
 {
-    public class ContactController : BaseController
+    public class ContactController : BaseUIController
     {
         public IActionResult Index()
         {

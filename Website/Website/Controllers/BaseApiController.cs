@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Website.Controllers
 {
-    public class BaseApiController : Controller
+    public class BaseApiController : BaseController
     {
         [NonAction]
         public IActionResult ShowModelErrors(ModelStateDictionary modelState)
