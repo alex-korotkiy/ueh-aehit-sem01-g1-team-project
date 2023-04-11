@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Website.Controllers;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,21 +14,67 @@
 
     <title>@ViewData["Title"]</title>
 </head>
+@{ 
+    string GetCurrentPage()
+    {
+        var controller = ViewData["Controller"];
+        if (controller == null) return string.Empty;
 
+        if (controller is HomeController)
+        {
+            var request = ViewContext.HttpContext.Request;
+            var key = "RatedOnly";
+            Microsoft.Extensions.Primitives.StringValues values;
+            if (!request.Query.TryGetValue(key, out values)) return "Home";
+            if (values.Count != 1) return "Home";
+            var value = values[0];
+            var intValue = 0;
+            if (!int.TryParse(value, out intValue) || intValue == 0) return "Home";
+            return "MyFavorites";
+        }
+
+        var controllerName = controller.GetType().Name;
+        var suffix = "Controller";
+
+        if (controllerName.EndsWith(suffix)) return controllerName.Substring(0, controllerName.Length - suffix.Length);
+
+        return string.Empty;
+    }
+
+    var currentPage = GetCurrentPage();
+
+    string GetLinkAttributeForPage(string page)
+    {
+        var url = string.Empty;
+
+        if (currentPage != page)
+        {
+            if (page == "MyFavorites")
+                url = Url.Action("Index", "Home", new { RatedOnly = 1 });
+            else
+                url = Url.Action("Index", page);
+        }
+
+        if (url != String.Empty)
+            return $"href=\"{url}\"";
+
+        return string.Empty;
+    }
+}
 <body>
     <div class="wrapper">
         <header class="header">
             <div class="header_nav">
                 <ul class="header_nav-lists">
-                    <li class="header_nav-item"><a class="header_nav-link text-nav home_header-link" href="#">Home</a></li>
+                    <li class="header_nav-item"><a class="header_nav-link text-nav @(currentPage=="Home"?"home_header-link":string.Empty)" @Html.Raw(GetLinkAttributeForPage("Home"))>Home</a></li>
                     <span class="stick_header text-nav"> | </span>
-                    <li class="header_nav-item"><a class="header_nav-link text-nav" href="./book-info.html">Book</a></li>
+                    <li class="header_nav-item"><a class="header_nav-link text-nav @(currentPage=="MyFavorites"?"home_header-link":string.Empty)" @Html.Raw(GetLinkAttributeForPage("MyFavorites"))>My Favorites</a></li>
                     <span class="stick_header text-nav"> | </span>
-                    <li class="header_nav-item"><a class="header_nav-link text-nav" href="#">Authors</a></li>
+                    <li class="header_nav-item"><a class="header_nav-link text-nav @(currentPage=="Authors"?"home_header-link":string.Empty)" @Html.Raw(GetLinkAttributeForPage("Authors"))>Authors</a></li>
                     <span class="stick_header text-nav"> | </span>
-                    <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">About us</a></li>
+                    <li class="header_nav-item"><a class="header_nav-link text-nav @(currentPage=="About"?"home_header-link":string.Empty)" @Html.Raw(GetLinkAttributeForPage("About"))>About us</a></li>
                     <span class="stick_header text-nav"> | </span>
-                    <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">Contact</a></li>
+                    <li class="header_nav-item"><a class="header_nav-link text-nav @(currentPage=="Contact"?"home_header-link":string.Empty)" @Html.Raw(GetLinkAttributeForPage("Contact"))>Contact</a></li>
                 </ul>
             </div>
         </header>

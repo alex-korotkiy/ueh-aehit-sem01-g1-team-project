@@ -10,8 +10,6 @@ namespace Website.Models.Requests
     {
         public BookSearchRequest()
         {
-            Start = 1;
-            Count = 21;
             SortOrder = 0;
         }
 
@@ -26,7 +24,7 @@ namespace Website.Models.Requests
         {
             var textSearch = !string.IsNullOrEmpty(Text);
 
-            if (SortType == null)
+            if (SortType == null || (!Enum.IsDefined(typeof(BookSortType), SortType.Value)))
             {
                 if (textSearch)
                 {
@@ -35,32 +33,11 @@ namespace Website.Models.Requests
                 }
                 else
                 {
-                    SortType = (int)BookSortType.YearOfPublication;
-                    SortOrder = 1;
+                    SortType = (int)BookSortType.Title;
+                    SortOrder = 0;
                 }
             }
 
-            var sortType = (BookSortType)SortType;
-            if (!Enum.IsDefined(typeof(BookSortType), sortType))
-            {
-                if (textSearch)
-                {
-                    SortType = (int)BookSortType.TotalRank;
-                    SortOrder = 1;
-                }
-                else
-                {
-                    SortType = (int)BookSortType.YearOfPublication;
-                    SortOrder = 1;
-                }
-
-            };
-
-            if (!textSearch && sortType == BookSortType.TotalRank)
-            {
-                SortType = (int)BookSortType.YearOfPublication;
-                SortOrder = 1;
-            }
         }
     }
 }

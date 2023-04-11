@@ -80,7 +80,7 @@ namespace Website.Infrastructure.Repositories
             var sql = GetSearchSql(request);
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<BookInfo>(sql, new { request.Text, StartRow = request.Start, EndRow = endRowNumber, request.UserId }).ToList();
+                return db.Query<BookInfo>(sql: sql, param: new { request.Text, StartRow = request.Start, EndRow = endRowNumber, request.UserId }, commandTimeout: 360).ToList();
             }
         }
 

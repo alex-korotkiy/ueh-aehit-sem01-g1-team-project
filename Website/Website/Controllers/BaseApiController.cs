@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace Website.Controllers
 {
     public class BaseApiController : Controller
     {
+        [NonAction]
         public IActionResult ShowModelErrors(ModelStateDictionary modelState)
         {
 
@@ -17,6 +19,17 @@ namespace Website.Controllers
                           select e.ErrorMessage).ToList();
 
             return Json(result);
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            base.OnActionExecuting(context);
+            
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = 422;
+                context.Result = ShowModelErrors(ModelState);
+            }
         }
     }
 }

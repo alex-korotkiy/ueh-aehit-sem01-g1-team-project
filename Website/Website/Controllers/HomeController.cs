@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using Website.Infrastructure.ModelBinding;
 using Website.Infrastructure.Repositories;
 using Website.Models;
+using Website.Models.Converters;
 using Website.Models.DbDto;
 using Website.Models.Requests;
+using Website.Models.Web;
 
 namespace Website.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         IBooksRepository booksRepository;
@@ -28,8 +30,10 @@ namespace Website.Controllers
             recommendationsRepository = recoRepo;
         }
 
-        public IActionResult Index([FromCookie] Guid? UserId, BookSearchRequest request)
+        public IActionResult Index([FromCookie] Guid? UserId, BookUISearchRequest request)
         {
+            var searchRequest = BookSearchConverter.Convert(request);
+
             long? lngUserId = null;
 
             if (UserId != null)
@@ -38,14 +42,14 @@ namespace Website.Controllers
                 if (user != null)
                 {
                     lngUserId = user.Id;
-                    request.UserId = user.Id;
+                    searchRequest.UserId = user.Id;
                 }
             }
 
             ViewData["Recommendations"] = recommendationsRepository.GetForUser(lngUserId);
 
-            var list = booksRepository.Search(request);
-            return View(list);
+            var list = booksRepository.Search(searchRequest);
+            return View(new BooksSearchAndResult() { Request = request, Result = list });
         }
 
         public IActionResult Privacy()

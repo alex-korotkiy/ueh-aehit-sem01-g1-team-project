@@ -1,7 +1,15 @@
-﻿@using Website.Models.DbDto;
-@model List<BookInfo>
+﻿@using Website.Models.Web;
+@using Website.Models.Enums;
+@model BooksSearchAndResult
 @{
     ViewData["Title"] = "Home Page";
+
+    string RatedLink(bool flag)
+    {
+        var newRequest = Model.Request.MemberwiseClone();
+        newRequest.RatedOnly = flag ? 1 : 0;
+        return Url.Action("Index", "Home", newRequest);
+    }
 }
 
 @section Style {
@@ -15,11 +23,13 @@
                 <img src="/img/main-logo.png" alt="logo">
             </div>
             <div class="header-content-input">
-                <input class="content_input" oninput="return showicon()" type="text" placeholder="Search book" maxlength="50">
-                <div class="input_close">
-                    <span class="fa fa-close" title="delete"></span>
-                </div>
-                <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
+                <form>
+                    <input class="content_input" oninput="return showicon()" type="text" name="Text" placeholder="Search book" maxlength="150" value="@Model.Request.Text">
+                    <div class="input_close">
+                        <span class="fa fa-close" title="delete"></span>
+                    </div>
+                    <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
+                </form>
             </div>
             <ul class="header_content-items">
                 <li class="header_content-self">
@@ -41,7 +51,7 @@
                 </li>
                 <span class="stick_header"> | </span>
                 <li class="header_content-self">
-                    <a class="header_content-link" href="#">
+                    <a class="header_content-link" href="@RatedLink(Model.Request.RatedOnly==0)">
                         <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.09519 12.0359C0.148184 8.77661 0.797187 3.88765 4.0422 2.25799C7.28721 0.628339 9.23422 3.88765 9.88322 5.5173C10.5322 3.88765 13.1282 0.628339 16.3732 2.25799C19.6183 3.88765 19.6183 8.77661 17.6712 12.0359C15.7242 15.2952 9.88322 21.8138 9.88322 21.8138C9.88322 21.8138 4.0422 15.2952 2.09519 12.0359Z"
                                   stroke="#393280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -53,23 +63,99 @@
     </div>
 }
 
+@{
+    var firstItem = Model.Result.FirstOrDefault();
+    var startItem = firstItem != null ? firstItem.RowNumber: 0;
+    var lastItem = Model.Result.LastOrDefault();
+    var endItem = lastItem != null ? lastItem.RowNumber : 0;
+    var totalItems = lastItem!=null ? lastItem.TotalCount : 0;
+
+    string PrevPageLink()
+    {
+        if(firstItem == null || firstItem.RowNumber <= 1) return string.Empty;
+        var newRequest = Model.Request.MemberwiseClone();
+        newRequest.Start = Math.Max(firstItem.RowNumber - newRequest.Count, 1);
+        return Url.Action("Index", "Home", newRequest);
+    }
+
+    string NextPageLink()
+    {
+        if (lastItem == null || lastItem.RowNumber >= lastItem.TotalCount) return string.Empty;
+        var newRequest = Model.Request.MemberwiseClone();
+        newRequest.Start = lastItem.RowNumber + 1;
+        return Url.Action("Index", "Home", newRequest);
+    }
+
+    var sortList = new List<String>
+    {
+        "Relevance",
+        "Alphabetically A-Z",
+        "Alphabetically Z-A",
+        "By popularity",
+        "By price: from low to high",
+        "By price: from high to low"
+    };
+
+    var sortType = Model.Request.SortType;
+    var noRelevance = false;
+
+    if (string.IsNullOrEmpty(Model.Request.Text))
+    {
+        if(sortType == null || sortType == (int)BookUISortType.Relevance) sortType = (int)BookUISortType.TitleAsc;
+        noRelevance = true;
+    }
+    else
+    {
+        if (sortType == null) sortType = (int)BookUISortType.Relevance;
+    }
+
+    var sortDict = new Dictionary<String, int>();
+    for (var i = 0; i<sortList.Count; i++)
+    {
+        sortDict[sortList[i]] = i;
+    }
+
+    var currentSortValue = sortList[sortType.Value];
+
+    var removeSorts = new List<String>
+    {
+        currentSortValue
+    };
+
+    if (noRelevance)
+    {
+        var rel = "Relevance";
+        if (!removeSorts.Contains(rel)) removeSorts.Add(rel);
+    }
+
+    sortList = sortList.Except(removeSorts).ToList();
+
+    string SortLink(string sortString)
+    {
+        var newRequest = Model.Request.MemberwiseClone();
+        newRequest.SortType = sortDict[sortString];
+        newRequest.Start = 1;
+        return Url.Action("Index", "Home", newRequest);
+    }
+
+}
 <section class="main_book-list">
     <div class="container">
         <div class="book_list-text">
-            <p class="list_text list_text--s">Sort by : <button onclick="showList()" class="btn_show-list" id="btn_show-list" type="button">Alphabetically A-Z</button></p>
-            <p class="list_text list_text--s">Showing 1 - 21 of 21 result</p>
-            <p class="list_text list_text--s">Show : 21</p>
+            <p class="list_text list_text--s">Sort by : <button onclick="showList()" class="btn_show-list" id="btn_show-list" type="button">@currentSortValue</button></p>
+            <p class="list_text list_text--s">Showing @startItem - @endItem of @totalItems result(s)</p>
+            <p class="list_text list_text--s">Show : @Model.Result.Count</p>
             <div class="show_list" id="show_list">
                 <div class="show_list-inner">
-                    <p class="show_list-text"><a class="show_list-text--link">Alphabetically Z-A</a></p>
-                    <p class="show_list-text"><a class="show_list-text--link">By popularity</a></p>
-                    <p class="show_list-text"><a class="show_list-text--link">By price: from low to high</a></p>
-                    <p class="show_list-text"><a class="show_list-text--link">By price: from high to low</a></p>
+                    @foreach (var sortString in sortList)
+                    {
+                    <p class="show_list-text"><a class="show_list-text--link" href="@SortLink(sortString)">@sortString</a></p>
+                    }
                 </div>
             </div>
         </div>
         <div class="book_list-inner">
-            @foreach (var book in Model)
+            @foreach (var book in Model.Result)
             {
                 <div class="main-list--info">
                     <div class="img-box">
@@ -86,18 +172,27 @@
                 </div>
             }
         </div>
+        @if (firstItem != null)
+        {
         <div class="main_list-arrow">
-            <a class="main_list-left--arrow">
-                <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.46271 14.0059L7.8174 12.5916L3.69655 8.38508L23 8.38508L23 6.41942L3.69655 6.41942L7.81644 2.21195L6.46271 0.798641L0 7.40225L6.46271 14.0059Z" fill="#393280" />
-                </svg>
-            </a>
-            <a class="main_list-roght--arrow">
-                <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.5373 0.744385L15.1826 2.15867L19.3035 6.36517H0V8.33082H19.3035L15.1836 12.5383L16.5373 13.9516L23 7.34799L16.5373 0.744385Z" fill="#393280" />
-                </svg>
-            </a>
-        </div>
+            @if(firstItem.RowNumber > 1)
+            { 
+        <a class="main_list-left--arrow" href="@PrevPageLink()">
+            <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.46271 14.0059L7.8174 12.5916L3.69655 8.38508L23 8.38508L23 6.41942L3.69655 6.41942L7.81644 2.21195L6.46271 0.798641L0 7.40225L6.46271 14.0059Z" fill="#393280" />
+            </svg>
+        </a>
+            }
+            @if (lastItem.RowNumber < lastItem.TotalCount)
+            {
+        <a class="main_list-roght--arrow" href="@NextPageLink()">
+            <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.5373 0.744385L15.1826 2.15867L19.3035 6.36517H0V8.33082H19.3035L15.1836 12.5383L16.5373 13.9516L23 7.34799L16.5373 0.744385Z" fill="#393280" />
+            </svg>
+        </a>
+            }
+    </div>
+        }
     </div>
 </section>
 

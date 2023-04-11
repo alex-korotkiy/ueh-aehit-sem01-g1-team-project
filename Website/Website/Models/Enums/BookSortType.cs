@@ -7,11 +7,11 @@ namespace Website.Models.Enums
 {
     public enum BookSortType
     {
-        YearOfPublication = 1,
+        Title = 1,
         TotalRank = 2,
-        Title = 3,
-        Author = 4,
-        Popularity = 5,
-        Price = 6
+        Popularity = 3,
+        Price = 4,
+        Author = 5,
+        YearOfPublication = 6,
     }
 }
