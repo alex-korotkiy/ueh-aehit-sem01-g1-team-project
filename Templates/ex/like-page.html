@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/footer-logo.png" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/like-page.css">
+  <title> like page</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header_nav">
+        <ul class="header_nav-lists">
+          <li class="header_nav-item"><a class="header_nav-link text-nav " href="./main-page.html">Home</a></li>
+          <span class="stick_header text-nav"> | </span>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./book-info.html" >Book</a></li>
+          <span class="stick_header text-nav"> | </span>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="#">Authors</a></li>
+          <span class="stick_header text-nav"> | </span>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">About us</a></li>
+          <span class="stick_header text-nav"> | </span>
+          <li class="header_nav-item"><a class="header_nav-link text-nav" href="./about-us.html" target="_parent">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="header_content">
+      <div class="header_content-inner">
+        <div class="header-logo">
+          <img src="./img/main-logo.png" alt="logo">
+        </div>
+        <div class="header-content-input">
+          <input class="content_input" oninput="return showicon()" type="text" placeholder="Search book" maxlength="50">
+          <div class="input_close">
+            <span class="fa fa-close" title="delete"></span>
+          </div>
+          <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
+        </div>
+        <ul class="header_content-items">
+          <li class="header_content-self"><a class="header_content-link header_content-link--user" href="#">
+              <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M8.43483 0.496338C5.1832 0.496338 2.53045 3.35543 2.53045 6.85997C2.53045 9.05088 3.56793 10.9963 5.14018 12.1445C2.13148 13.5354 0 16.7536 0 20.4963H1.68697C1.68697 16.4691 4.6982 13.2236 8.43483 13.2236C12.1715 13.2236 15.1827 16.4691 15.1827 20.4963H16.8697C16.8697 16.7536 14.7382 13.5363 11.7295 12.1436C12.5319 11.5598 13.1894 10.7729 13.6443 9.85178C14.0993 8.93069 14.3379 7.90346 14.3392 6.85997C14.3392 3.35543 11.6865 0.496338 8.43483 0.496338ZM8.43483 2.31452C10.7738 2.31452 12.6522 4.33907 12.6522 6.85997C12.6522 9.38088 10.7738 11.4054 8.43483 11.4054C6.09585 11.4054 4.21741 9.38088 4.21741 6.85997C4.21741 4.33907 6.09585 2.31452 8.43483 2.31452Z"
+                  fill="#393280" />
+              </svg>
+            </a></li>
+          <span class="stick_header"> | </span>
+          <li class="header_content-self"><a class="header_content-link" href="#">
+              <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.93902 0.496338C5.96844 0.496338 4.35092 2.23018 4.35092 4.34249V5.11172H0.807321L0.762829 5.83326L0.0452101 19.6794L0 20.4963H15.8773L15.8328 19.6786L15.1152 5.83249L15.07 5.11172H11.5271V4.34249C11.5271 2.23018 9.9096 0.496338 7.93902 0.496338ZM7.93902 2.0348C8.50999 2.0348 9.05758 2.27793 9.46132 2.71071C9.86506 3.14348 10.0919 3.73045 10.0919 4.34249V5.11172H5.78616V4.34249C5.78616 3.73045 6.01298 3.14348 6.41672 2.71071C6.82046 2.27793 7.36805 2.0348 7.93902 2.0348V2.0348ZM2.15286 6.65018H4.35092V8.95788H5.78616V6.65018H10.0919V8.95788H11.5271V6.65018H13.7252L14.3531 18.9579H1.52566L2.15286 6.65018Z"
+                  fill="#393280" />
+              </svg>
+            </a></li>
+          <span class="stick_header"> | </span>
+          <li class="header_content-self"><a class="header_content-link header_content-link--heart" href="./main-page.html" title="back home">
+              <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M2.09519 12.0359C0.148184 8.77661 0.797187 3.88765 4.0422 2.25799C7.28721 0.628339 9.23422 3.88765 9.88322 5.5173C10.5322 3.88765 13.1282 0.628339 16.3732 2.25799C19.6183 3.88765 19.6183 8.77661 17.6712 12.0359C15.7242 15.2952 9.88322 21.8138 9.88322 21.8138C9.88322 21.8138 4.0422 15.2952 2.09519 12.0359Z"
+                  stroke="#393280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+    <main>
+      <section class="loading">
+      <div class="loader_inner">
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <circle id="test" cx="40" cy="40" r="32"></circle>
+            </svg>
+        </div>
+        <div class="loader triangle">
+            <svg viewBox="0 0 86 80">
+                <polygon points="43 8 79 72 7 72"></polygon>
+            </svg>
+        </div>
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <rect x="8" y="8" width="64" height="64"></rect>
+            </svg>
+        </div>
+      </div>
+      </section>
+      <section class="liked-books">
+        <div class="container">
+          <div class="liked-content">
+            <div class="liked_inner liked_inner--1">
+              <div class="liked_img-box">
+                <img src="http://images.amazon.com/images/P/1879384493.01.MZZZZZZZ.jpg" alt="1st book">
+              </div>
+              <div class="liked_bio">
+                <h3 class="liked_title">If I'd Known Then What I Know Now</h3>
+                <p class="liked_author">J. R. Parrish</p>
+                <p class="liked-bio"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, architecto.</p>
+                <p class="liked_price ">49.99$</p>
+              </div>
+              <div class="star">
+                <fieldset class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="awesome"></label>
+                  <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                  <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                  <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                  <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full" title="enjoyable"></label>
+                  <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                  <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                  <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                  <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                  <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half" title="dislike"></label>
+                </fieldset>
+                <br>
+                <h4 id="rating-value" class="rating_num"> 0 of 5</h4>
+              </div>
+            </div>
+            <div class="liked_inner liked_inner--2">
+              <div class="liked_img-box">
+                <img src="http://images.amazon.com/images/P/0061076031.01.MZZZZZZZ.jpg" alt="2nd book">
+              </div>
+              <div class="liked_bio">
+                <h3 class="liked_title">Mary Kate & Ashley Olsen</h3>
+                <p class="liked_author">Harper Entertainment</p>
+                <p class="liked-bio"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, architecto.</p>
+                <p class="liked_price ">29.99$</p>
+              </div>
+              <div class="star">
+                <fieldset class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="awesome"></label>
+                  <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                  <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                  <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                  <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full" title="enjoyable"></label>
+                  <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                  <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                  <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                  <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                  <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half" title="dislike"></label>
+                </fieldset>
+                <br>
+                <h4 id="rating-value" class="rating_num"> 0 of 5</h4>
+              </div>
+            </div>
+            <div class="liked_inner liked_inner--3">
+              <div class="liked_img-box">
+                <img src="http://images.amazon.com/images/P/0375759778.01.MZZZZZZZ.jpg" alt="3rd book">
+              </div>
+              <div class="liked_bio">
+                <h3 class="liked_title">Prague : A Novel</h3>
+                <p class="liked_author">Arthur Phillips</p>
+                <p class="liked-bio"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, architecto.</p>
+                <p class="liked_price ">59.99$</p>
+              </div>
+              <div class="star">
+                <fieldset class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="awesome"></label>
+                  <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                  <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                  <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                  <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full" title="enjoyable"></label>
+                  <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                  <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                  <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                  <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                  <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half" title="dislike"></label>
+                </fieldset>
+                <br>
+                <h4 id="rating-value" class="rating_num"> 0 of 5</h4>
+              </div>
+            </div>
+            <div class="liked_inner liked_inner--4">
+              <div class="liked_img-box">
+                <img src="http://images.amazon.com/images/P/0452264464.01.MZZZZZZZ.jpg" alt="4th book">
+              </div>
+              <div class="liked_bio">
+                <h3 class="liked_title">Beloved (Plume Contemporary Fiction)</h3>
+                <p class="liked_author">Toni Morrison</p>
+                <p class="liked-bio"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, architecto.</p>
+                <p class="liked_price ">19.99$</p>
+              </div>
+              <div class="star">
+                <fieldset class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="awesome"></label>
+                  <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                  <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                  <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                  <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full" title="enjoyable"></label>
+                  <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                  <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                  <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                  <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                  <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half" title="dislike"></label>
+                </fieldset>
+                <br>
+                <h4 id="rating-value" class="rating_num"> 0 of 5</h4>
+              </div>
+            </div>
+            <div class="liked_inner liked_inner--5">
+              <div class="liked_img-box">
+                <img src="http://images.amazon.com/images/P/1552041778.01.MZZZZZZZ.jpg" alt="1st book">
+              </div>
+              <div class="liked_bio">
+                <h3 class="liked_title">Jane Doe</h3>
+                <p class="liked_author">R. J. Kaiser</p>
+                <p class="liked-bio"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, architecto.</p>
+                <p class="liked_price ">69.99$</p>
+              </div>
+              <div class="star">
+                <fieldset class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="awesome"></label>
+                  <input type="radio" id="star4.5" name="rating" value="4.5"/><label for="star4.5" class="half"></label>
+                  <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                  <input type="radio" id="star3.5" name="rating" value="3.5"/><label for="star3.5" class="half"></label>
+                  <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full" title="enjoyable"></label>
+                  <input type="radio" id="star2.5" name="rating" value="2.5"/><label for="star2.5" class="half"></label>
+                  <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                  <input type="radio" id="star1.5" name="rating" value="1.5"/><label for="star1.5" class="half"></label>
+                  <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                  <input type="radio" id="star0.5" name="rating" value="0.5"/><label for="star0.5" class="half" title="dislike"></label>
+                </fieldset>
+                <br>
+                <h3 id="rating-value" class="rating_num"> 0 of 5</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="page-like">
+        <div class="container">
+          <div class="like_content">
+            <h2 class="like_header text-header">You might also enjoy</h2>
+            <div class="like_inner">
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0345424719.01.MZZZZZZZ.jpg" alt="book1">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">A Widow for One Year</h3>
+                  <p class="info_name i-name">JOHN IRVING</p>
+                  <p class="info_price i-price">40.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/1877727083.01.MZZZZZZZ.jpg" alt="book2">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">Recent Poems</h3>
+                  <p class="info_name i-name">Roberto Juarroz</p>
+                  <p class="info_price i-price">55.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/8483002523.01.MZZZZZZZ.jpg" alt="book3">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">La mirada del tafur</h3>
+                  <p class="info_name i-name">Ferran Torrent</p>
+                  <p class="info_price i-price">20.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0345335465.01.MZZZZZZZ.jpg" alt="book4">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">Dragonriders of Pern</h3>
+                  <p class="info_name i-name">Anne McCaffrey</p>
+                  <p class="info_price i-price">30.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0515118656.01.MZZZZZZZ.jpg" alt="ex5">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title last">The Cove</h3>
+                  <p class="info_name i-name lname">Catherine Coulter</p>
+                  <p class="info_price i-price">49.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0385490992.01.MZZZZZZZ.jpg" alt="book5">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">The Street Lawyer</h3>
+                  <p class="info_name i-name">John Grisham</p>
+                  <p class="info_price i-price">35.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0811203220.01.MZZZZZZZ.jpg" alt="book6">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">Still the Humming bird</h3>
+                  <p class="info_name i-name">Henry Miller</p>
+                  <p class="info_price i-price">60.00$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0385337639.01.MZZZZZZZ.jpg" alt="book8">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">Crow Lake (Book Club)</h3>
+                  <p class="info_name i-name">Mary Lawson</p>
+                  <p class="info_price i-price">24.99$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0330332775.01.MZZZZZZZ.jpg" alt="book9">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">Pride and Prejudice</h3>
+                  <p class="info_name i-name">Jane Austen</p>
+                  <p class="info_price i-price">49.99$</p>
+                </div>
+              </div>
+              <div class="like_info">
+                <div class="img-box">
+                  <img src="http://images.amazon.com/images/P/0345404793.01.MZZZZZZZ.jpg" alt="book10">
+                  <p class="cart">Add to cart</p>
+                </div>
+                <div class="like_info-inner">
+                  <h3 class="info_title i-title">Protect and Defend</h3>
+                  <p class="info_name i-name">Richard North Patterson</p>
+                  <p class="info_price i-price">38.99$</p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="like-circle">
+              <div class="like_slider-arrows">
+                <a class="like_slider-arrows slider-prev" href="">
+                  <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.46271 14.0059L7.8174 12.5916L3.69655 8.38508L23 8.38508L23 6.41942L3.69655 6.41942L7.81644 2.21195L6.46271 0.798641L0 7.40225L6.46271 14.0059Z" fill="#393280"/>
+                    </svg>                  
+                </a>
+                <a class="like_slider-arrows slider-next" href="">
+                  <svg width="23" height="15" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.5373 0.744385L15.1826 2.15867L19.3035 6.36517H0V8.33082H19.3035L15.1836 12.5383L16.5373 13.9516L23 7.34799L16.5373 0.744385Z" fill="#393280"/>
+                    </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer_inner">
+          <div class="first_col">
+            <div class="first_inner">
+              <div class="footer_logo">
+                <img src="./img/footer-logo.png" alt="logo">
+              </div>
+              <p class="logo_text"> Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <ul class="footer_links">
+                <li class="footer_items"><a class="footer_socials-link" href="#"> <img src="./img/facebook.png"
+                      alt="facebook">
+                  </a></li>
+                <li class="footer_items"><a class="footer_socials-link" href="#"> <img src="./img/linkedin.png"
+                      alt="linkedin">
+                  </a></li>
+                <li class="footer_items"><a class="footer_socials-link" href="#"> <img src="./img/twitter.png"
+                      alt="twitter">
+                  </a></li>
+                <li class="footer_items"><a class="footer_socials-link" href="#"> <img src="./img/youtube.png"
+                      alt="youtube">
+                  </a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="second_col">
+            <div class="second_inner">
+              <h2 class="company_name">Company</h2>
+              <ul class="footer_second-list">
+                <li class="footer_second-item"><a class="footer_item-link sefooter" href="#">HOME</a></li>
+                <li class="footer_second-item"><a class="footer_item-link sefooter" href="./book-info.html" target="_parent">BLOG</a></li>
+                <li class="footer_second-item"><a class="footer_item-link sefooter" href="#">AUTHORS</a></li>
+                <li class="footer_second-item"><a class="footer_item-link sefooter" href="./about-us.html" target="_parent">ABOUT US</a></li>
+                <li class="footer_second-item"><a class="footer_item-link sefooter" href="./about-us.html" target="_parent">CONTACT</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="third_col">
+            <div class="third_inner">
+              <h2 class="company_name">Important Links</h2>
+              <ul class="footer_third-list">
+                <li class="footer_third-item"><a class="footer_item-link" href="#">Privacy Policy</a></li>
+                <li class="footer_third-item"><a class="footer_item-link" href="#">FAQs</a></li>
+                <li class="footer_third-item"><a class="footer_item-link" href="#">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="go_top">
+            <p><a class="top company_name" href="#">Go TO Top &#8963;</a></p>
+          </div>
+        </div>
+        <div class="footer_end">
+          <p class="footer_end-text">© 2023 Slash Inc. All rights reserved.</p>
+          <p class="footer_end-text2">Privacy | Terms of Service</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="./js/like-page.js"></script>
+</body>
+</html>
