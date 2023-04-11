@@ -10,5 +10,10 @@ namespace Website.Controllers
     public class BaseController : Controller
     {
         protected ILogger<BaseController> _logger;
+
+        public BaseController(ILogger<BaseController> logger)
+        {
+            _logger = logger;
+        }
     }
 }

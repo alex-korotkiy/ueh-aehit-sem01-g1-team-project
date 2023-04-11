@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Website.Controllers
         IUsersRepository usersRepository;
         IRecommendationsRepository recommendationsRepository;
 
-        public BookController(IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo)
+        public BookController(ILogger<BookController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo) : base(logger)
         {
             booksRepository = booksRepo;
             usersRepository = usersRepo;

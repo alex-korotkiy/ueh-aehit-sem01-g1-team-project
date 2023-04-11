@@ -21,9 +21,8 @@ namespace Website.Controllers
         IUsersRepository usersRepository;
         IRecommendationsRepository recommendationsRepository;
 
-        public HomeController(ILogger<HomeController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo)
+        public HomeController(ILogger<HomeController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo) : base(logger)
         {
-            _logger = logger;
             booksRepository = booksRepo;
             usersRepository = usersRepo;
             recommendationsRepository = recoRepo;
