@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,12 @@ using System.Threading.Tasks;
 
 namespace Website.Controllers
 {
-    public class BaseApiController : Controller
+    public class BaseApiController : BaseController
     {
+        public BaseApiController(ILogger<BaseApiController> logger) : base(logger)
+        {
+        }
+
         [NonAction]
         public IActionResult ShowModelErrors(ModelStateDictionary modelState)
         {

@@ -15,16 +15,14 @@ using Website.Models.Web;
 
 namespace Website.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : BaseUIController
     {
-        private readonly ILogger<HomeController> _logger;
         IBooksRepository booksRepository;
         IUsersRepository usersRepository;
         IRecommendationsRepository recommendationsRepository;
 
-        public HomeController(ILogger<HomeController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo)
+        public HomeController(ILogger<HomeController> logger, IBooksRepository booksRepo, IUsersRepository usersRepo, IRecommendationsRepository recoRepo) : base(logger)
         {
-            _logger = logger;
             booksRepository = booksRepo;
             usersRepository = usersRepo;
             recommendationsRepository = recoRepo;
@@ -32,6 +30,8 @@ namespace Website.Controllers
 
         public IActionResult Index([FromCookie] Guid? UserId, BookUISearchRequest request)
         {
+            _logger.LogInformation("Home page opened");
+
             var searchRequest = BookSearchConverter.Convert(request);
 
             long? lngUserId = null;

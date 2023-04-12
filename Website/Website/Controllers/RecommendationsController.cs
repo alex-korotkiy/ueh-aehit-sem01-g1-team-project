@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace Website.Controllers
         protected IUsersRepository usersRepository;
         protected IRecommendationsRepository recommendationsRepository;
 
-        public RecommendationsController(IUsersRepository urepo, IRecommendationsRepository recrepo)
+        public RecommendationsController(ILogger<RecommendationsController> logger, IUsersRepository urepo, IRecommendationsRepository recrepo): base(logger)
         {
             this.usersRepository = urepo;
             this.recommendationsRepository = recrepo;

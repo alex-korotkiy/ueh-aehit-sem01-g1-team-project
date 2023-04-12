@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Website.Controllers
 {
     public class BaseController : Controller
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
+        protected ILogger<BaseController> _logger;
+
+        public BaseController(ILogger<BaseController> logger)
         {
-            base.OnActionExecuting(context);
-            ViewData["Controller"] = this;
+            _logger = logger;
         }
     }
 }

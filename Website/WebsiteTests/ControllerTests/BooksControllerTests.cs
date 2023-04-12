@@ -7,6 +7,7 @@ using Website.Infrastructure.Repositories;
 using Website.Models.DbDto;
 using Website.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace WebsiteTests.ControllerTests
 {
@@ -26,11 +27,13 @@ namespace WebsiteTests.ControllerTests
             var bookId = 1;
             var bookInfo = new BookInfo();
 
+            var loggerMock = new Mock<ILogger<BooksController>>();
+
             var booksRepoMock = new Mock<IBooksRepository>();
             booksRepoMock.Setup(repo => repo.Get(bookId)).Returns(bookInfo);
 
             var usersRepoMock = new Mock<IUsersRepository>();
-            var booksController = new BooksController(booksRepoMock.Object, usersRepoMock.Object);
+            var booksController = new BooksController(loggerMock.Object, booksRepoMock.Object, usersRepoMock.Object);
 
             //Act
             var result = booksController.Get(bookId);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace Website.Controllers
         protected IUsersRepository usersRepository;
         protected IRatingsRepository ratingsRepository;
 
-        public RatingsController(IUsersRepository usersRepo, IRatingsRepository ratingsRepo)
+        public RatingsController(ILogger<RatingsController> logger, IUsersRepository usersRepo, IRatingsRepository ratingsRepo) : base(logger)
         {
             usersRepository = usersRepo;
             ratingsRepository = ratingsRepo;
