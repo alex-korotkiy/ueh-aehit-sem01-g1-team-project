@@ -421,6 +421,11 @@ left: -10px;
   .slider-next:hover path{
     fill: #ED553B;
   }
+  .main_list-background{
+    z-index: -1;
+    transform: translateY(30%);
+    margin-left: 10px;
+  }
 
 /* =========================like-footer============================= */
 .footer_items,

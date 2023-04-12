@@ -335,7 +335,11 @@ color: #ED553B;
 .main_list-roght--arrow:hover path{
   fill: #ED553B;
 }
-
+.main_list-background{
+  z-index: -1;
+  transform: translateY(30%);
+  margin-left: 10px;
+}
 
 
   /* =========================main-like======================= */

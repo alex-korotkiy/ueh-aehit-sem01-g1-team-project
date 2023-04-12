@@ -117,6 +117,13 @@ transition: color 400ms ease;
 }
 .book_img{
   margin-right: 60px;
+  position: relative;
+}
+.book_info-background{
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  z-index: -1;
 }
 .book_img img{
   transition: all .3s;
@@ -343,6 +350,12 @@ color: #ED553B;
 .slider-next:hover path{
   fill: #ED553B;
 }
+.main_list-background{
+  z-index: -1;
+  transform: translateY(30%);
+  margin-left: 10px;
+}
+
 
 /* =========================book-footer============================= */
 
@@ -512,7 +525,7 @@ user-select: none;
   margin-top: -100px;
   margin-left: -100px;
   perspective: 1000px;
-  transform-type: preserve-3d;
+  /* transform-type: preserve-3d; */
 }
 
 
