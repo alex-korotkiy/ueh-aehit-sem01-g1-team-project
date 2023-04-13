@@ -242,6 +242,15 @@ letter-spacing: 0.02em;
 text-transform: capitalize;
 color: #ED553B;
   }
+.liked_img-box{
+  position: relative;
+}
+.like_page-background{
+position: absolute;
+top: 20%; 
+left: 10%;
+z-index: -1;
+}
 
   /* =========================like-book-rate============================= */
 .star{
@@ -420,6 +429,11 @@ left: -10px;
   .slider-prev:hover path,
   .slider-next:hover path{
     fill: #ED553B;
+  }
+  .main_list-background{
+    z-index: -1;
+    transform: translateY(30%);
+    margin-left: 10px;
   }
 
 /* =========================like-footer============================= */
