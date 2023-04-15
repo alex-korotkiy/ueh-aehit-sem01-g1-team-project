@@ -8,6 +8,7 @@
     {
         var newRequest = Model.Request.MemberwiseClone();
         newRequest.RatedOnly = flag ? 1 : 0;
+        newRequest.Start = 1;
         return Url.Action("Index", "Home", newRequest);
     }
 }
@@ -161,6 +162,7 @@
                     <div class="img-box">
                         <a href="@Url.Action("Index", "Book", new { book.Id })" target="_parent">
                             <img src="@book.Image_URL_M" alt="b1">
+                            <img class="main_list-background" src="/img/footer-logo.png" alt="backgroung-logo">
                             <p class="cart">Add to cart</p>
                         </a>
                     </div>

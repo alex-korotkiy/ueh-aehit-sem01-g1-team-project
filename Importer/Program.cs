@@ -33,7 +33,7 @@ namespace Importer
                 recoTable.Rows.Add(reco.Id, reco.UserId, reco.ItemId);
             }
 
-            siteDbConnection.Execute("RenewUserRecommendations", new { @newRecommendations = recoTable.AsTableValuedParameter("UserRecommendationsTable") });
+            siteDbConnection.Execute("exec RenewUserRecommendations @newRecommendations", new { @newRecommendations = recoTable.AsTableValuedParameter("UserRecommendationsTable") });
         }
 
         static void Main(string[] args)
