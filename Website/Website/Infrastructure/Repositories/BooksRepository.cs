@@ -13,6 +13,11 @@ namespace Website.Infrastructure.Repositories
 {
     public class BooksRepository : BaseRepository, IBooksRepository
     {
+        protected BookInfo AdjustRating(BookInfo book)
+        {
+            book.Rating = book.Rating / 2 + 2.5m;
+            return book;
+        }
 
         protected string GetSearchSql(BookSearchRequest request)
         {
@@ -64,11 +69,22 @@ namespace Website.Infrastructure.Repositories
         {
         }
 
-        public BookInfo Get(int id)
+        public BookInfo Get(int id, long? userId)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<BookInfo>("SELECT * FROM vBooksList WHERE Id = @Id", new { id }).FirstOrDefault();
+                var result = db.Query<BookInfo>("SELECT * FROM vBooksList WHERE Id = @Id", new { id }).FirstOrDefault();
+                if (result == null) return result;
+                if(userId.HasValue)
+                {
+                    var rating = db.Query<decimal?>("SELECT Rating FROM Ratings WHERE UserId = @userId AND ItemId = @itemId", new { userId = userId.Value, itemId = id }).FirstOrDefault();
+                    if(rating.HasValue)
+                    {
+                        result.Rating = rating;
+                        AdjustRating(result);
+                    }
+                }
+                return result;
             }
         }
 
@@ -80,7 +96,7 @@ namespace Website.Infrastructure.Repositories
             var sql = GetSearchSql(request);
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<BookInfo>(sql: sql, param: new { request.Text, StartRow = request.Start, EndRow = endRowNumber, request.UserId }, commandTimeout: 360).ToList();
+                return db.Query<BookInfo>(sql: sql, param: new { request.Text, StartRow = request.Start, EndRow = endRowNumber, request.UserId }, commandTimeout: 360).Select(AdjustRating).ToList();
             }
         }
 

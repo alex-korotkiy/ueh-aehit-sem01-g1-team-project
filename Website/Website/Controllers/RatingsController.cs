@@ -24,13 +24,14 @@ namespace Website.Controllers
         }
 
         [HttpPut]
+        [Route("[controller]")]
         public IActionResult Set([FromCookie][Required] Guid? UserId, [FromBody] SetRatingRequest request)
         {
 
             var userInfo = new UserInfo { UniqueId = UserId.Value };
             usersRepository.Add(userInfo);
 
-            ratingsRepository.SetRating(userInfo.Id.Value, request.ItemId, request.Rating);
+            ratingsRepository.SetRating(userInfo.Id.Value, request.ItemId, 2 * request.Rating - 5);
             return NoContent();
         }
     }

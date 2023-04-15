@@ -38,7 +38,7 @@ namespace Website.Controllers
 
             ViewData["Recommendations"] = recommendationsRepository.GetForUser(lngUserId);
 
-            var book = booksRepository.Get(id);
+            var book = booksRepository.Get(id, lngUserId);
             return View(book);
         }
     }

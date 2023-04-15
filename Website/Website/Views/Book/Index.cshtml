@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="/css/book-info.css" />
 }
 
+@{ 
+    string checkedForRating(decimal? rating, decimal value)
+    {
+        return rating == value ? "checked" : string.Empty;
+    }
+}
 @if (Model != null)
 {
     <section class="book-details">
@@ -20,27 +26,29 @@
                         <p class="book_text1">@Model.Title</p>
                         <p class="book_name">@Model.Author</p>
                         <div class="star">
-                            <fieldset class="rating">
-                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" class="full"
+                            <fieldset class="rating" id="rating_@Model.Id">
+                                <input type="radio" id="star5" name="rating" value="5" @checkedForRating(Model.Rating, 5)/><label for="star5" class="full"
                                                                                                 title="awesome"></label>
-                                <input type="radio" id="star4.5" name="rating" value="4.5" /><label for="star4.5"
+                                <input type="radio" id="star4.5" name="rating" value="4.5" @checkedForRating(Model.Rating, 4.5m) /><label for="star4.5"
                                                                                                     class="half"></label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" class="full"></label>
-                                <input type="radio" id="star3.5" name="rating" value="3.5" /><label for="star3.5"
+                                <input type="radio" id="star4" name="rating" value="4" @checkedForRating(Model.Rating, 4)/><label for="star4" class="full"></label>
+                                <input type="radio" id="star3.5" name="rating" value="3.5" @checkedForRating(Model.Rating, 3.5m)/><label for="star3.5"
                                                                                                     class="half"></label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" class="full"
+                                <input type="radio" id="star3" name="rating" value="3" @checkedForRating(Model.Rating, 3)/><label for="star3" class="full"
                                                                                                 title="enjoyable"></label>
-                                <input type="radio" id="star2.5" name="rating" value="2.5" /><label for="star2.5"
+                                <input type="radio" id="star2.5" name="rating" value="2.5" @checkedForRating(Model.Rating, 2.5m)/><label for="star2.5"
                                                                                                     class="half"></label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" class="full"></label>
-                                <input type="radio" id="star1.5" name="rating" value="1.5" /><label for="star1.5"
+                                <input type="radio" id="star2" name="rating" value="2" @checkedForRating(Model.Rating, 2)/><label for="star2" class="full"></label>
+                                <input type="radio" id="star1.5" name="rating" value="1.5" @checkedForRating(Model.Rating, 1.5m)/><label for="star1.5"
                                                                                                     class="half"></label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" class="full"></label>
-                                <input type="radio" id="star0.5" name="rating" value="0.5" /><label for="star0.5" class="half"
+                                <input type="radio" id="star1" name="rating" value="1" @checkedForRating(Model.Rating, 1)/><label for="star1" class="full"></label>
+                                <input type="radio" id="star0.5" name="rating" value="0.5" @checkedForRating(Model.Rating, 0.5m)/><label for="star0.5" class="half"
                                                                                                     title="dislike"></label>
                             </fieldset>
                             <br>
-                            <h3 id="rating-value" class="rating_num"> 0 of 5</h3>
+                            <h3 id="rating-value" class="rating_num">
+                                @Html.Raw(Model.Rating.HasValue?$"{Model.Rating.Value} out of 5":String.Empty)
+                            </h3>
                         </div>
                         <p class="book_bio">
                             Jump start your book reading by quickly check through the popular book categories.
@@ -54,5 +62,6 @@
 }
 
 @section Script {
+    <script src="/js/ratings.js"></script>
     <script src="/js/book-info.js"></script>
 }

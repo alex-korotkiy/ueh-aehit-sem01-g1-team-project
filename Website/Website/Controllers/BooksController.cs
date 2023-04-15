@@ -22,13 +22,21 @@ namespace Website.Controllers
         }
 
         [Route("[controller]/{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get([FromCookie] Guid? UserId, int id)
         {
-            var book = booksRepository.Get(id);
+            long? lngUserId = null;
+
+            if (UserId != null)
+            {
+                var user = usersRepository.GetByUniqueId(UserId.Value);
+                if (user != null) lngUserId = user.Id;
+            }
+
+            var book = booksRepository.Get(id, lngUserId);
             return Json(book);
         }
 
-        public IActionResult Search([FromCookie] Guid? UserId, BookSearchRequest request) 
+        public IActionResult Search([FromCookie] Guid? UserId, BookSearchRequest request)
         {
             if (UserId != null & request.RatedOnly != 0)
             {

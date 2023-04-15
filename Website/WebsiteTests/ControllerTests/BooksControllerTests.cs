@@ -30,13 +30,13 @@ namespace WebsiteTests.ControllerTests
             var loggerMock = new Mock<ILogger<BooksController>>();
 
             var booksRepoMock = new Mock<IBooksRepository>();
-            booksRepoMock.Setup(repo => repo.Get(bookId)).Returns(bookInfo);
+            booksRepoMock.Setup(repo => repo.Get(bookId, null)).Returns(bookInfo);
 
             var usersRepoMock = new Mock<IUsersRepository>();
             var booksController = new BooksController(loggerMock.Object, booksRepoMock.Object, usersRepoMock.Object);
 
             //Act
-            var result = booksController.Get(bookId);
+            var result = booksController.Get(null, bookId);
 
             //Assert
             var jsonResult = result as JsonResult;
