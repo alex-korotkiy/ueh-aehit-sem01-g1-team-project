@@ -46,6 +46,18 @@ namespace Importer
 
             Console.WriteLine("Reading database configuration ...");
 
+            int recommendationsCount = 20;
+
+            try
+            {
+                var rcount = config["RecommendationsCount"];
+                recommendationsCount = int.Parse(rcount);
+            }
+            catch
+            {
+
+            }
+
             var siteConnectionString = config.GetConnectionString("siteDb");
             var modelConnectionString = config.GetConnectionString("modelDb");
 
@@ -67,7 +79,7 @@ namespace Importer
 
                         if (lastReco == null) 
                         {
-                            Console.WriteLine("No more recommendation retrieved. Exiting ...");
+                            Console.WriteLine("No more recommendation retrieved. Done with it ...");
                             break;
                         };
 
@@ -75,6 +87,19 @@ namespace Importer
                         Console.WriteLine($"Updating recommendations for user: {lastReco.UserId}");
                         UpdateUserRecommendations(recommendations, siteConnection);
                     }
+
+                    Console.WriteLine("Updating default recommendations");
+
+                    var updateDefaultRecoSql = $"SELECT TOP {recommendationsCount} ItemId, TotalRating INTO #DefaultRecommendations FROM ItemTotalRatings ORDER BY TotalRating DESC" + Environment.NewLine +
+                        "BEGIN TRAN" + Environment.NewLine +
+                        "DELETE DefaultRecommendations" + Environment.NewLine +
+                        "INSERT DefaultRecommendations (ItemId) SELECT ItemId FROM #DefaultRecommendations ORDER BY TotalRating DESC" + Environment.NewLine +
+                        "COMMIT"
+                        ;
+
+                    siteConnection.Execute(updateDefaultRecoSql);
+
+                    Console.WriteLine("Done!");
                 }
             }
         }
