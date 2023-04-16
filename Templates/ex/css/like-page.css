@@ -264,6 +264,26 @@ position: relative;
   height: 40px;
   font-size: 24px;
 }
+#rating-value2{
+  width: 250px;
+  height: 40px;
+  font-size: 24px;
+}
+#rating-value3{
+  width: 250px;
+  height: 40px;
+  font-size: 24px;
+}
+#rating-value4{
+  width: 250px;
+  height: 40px;
+  font-size: 24px;
+}
+#rating-value5{
+  width: 250px;
+  height: 40px;
+  font-size: 24px;
+}
 .rating{
   border: none;
   padding-left: 0;
