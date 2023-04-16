@@ -22,3 +22,5 @@ jobs:
       run: dotnet build Website --no-restore
     - name: Test
       run: dotnet test Website --no-build --verbosity normal
+    - name: Scan
+      run: dotnet list Website package --vulnerable

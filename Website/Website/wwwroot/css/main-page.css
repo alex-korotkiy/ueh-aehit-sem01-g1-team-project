@@ -217,7 +217,7 @@ position: absolute;
 top: 55px;
 right: 580px;
 width: 154px;
-height: auto;
+height: 210px;
 border-radius: 3px;
 border: 0.5px solid #393280;
 background-color: #FCECEC;
@@ -335,7 +335,11 @@ color: #ED553B;
 .main_list-roght--arrow:hover path{
   fill: #ED553B;
 }
-
+.main_list-background{
+  z-index: -1;
+  transform: translateY(30%);
+  margin-left: 10px;
+}
 
 
   /* =========================main-like======================= */

@@ -9,7 +9,7 @@ namespace Website.Infrastructure.Repositories
 {
     public interface IBooksRepository
     {
-        BookInfo Get(int id);
+        BookInfo Get(int id, long? userId);
         List<BookInfo> Search(BookSearchRequest request);
     }
 }
