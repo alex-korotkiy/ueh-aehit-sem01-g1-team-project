@@ -8,7 +8,11 @@ conn = pyodbc.connect('Driver={SQL Server};'
                       'Trusted_Connection=yes;')
 
 query = "SELECT UserId, ItemId, Rating FROM Ratings ORDER BY UserId, ItemId"
+print("Loading ratings from database ...")
 df_ratings = pd.read_sql(query, conn)
+print(f"Loaded {len(df_ratings)} rating(s)")
+
+print(f"Running model training ...")
 ratings_list = df_ratings.values.tolist()
 
 recommender = U2UCF2(ratings_list)
@@ -28,6 +32,7 @@ def process_user(user_id):
     
     cursor.commit()
 
+print("Writing recommendations to database ...")
 
 for user_id in sorted(recommender.ratings.keys()):
     print(f"updating recommendations for user: {int(user_id)}")
