@@ -7,7 +7,7 @@ function setRating(itemId, rating)
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            console.log(data.toString())
+            console.log('rating set');
         },
         error: function (errMsg) {
             console.error(errMsg);

@@ -49,11 +49,9 @@
 
         if (currentPage != page)
         {
-            if (page == "MyFavorites")
-                url = Url.Action("Index", "Home", new { RatedOnly = 1 });
-            else
-                url = Url.Action("Index", page);
+            url = Url.Action("Index", page);
         }
+
 
         if (url != String.Empty)
             return $"href=\"{url}\"";
