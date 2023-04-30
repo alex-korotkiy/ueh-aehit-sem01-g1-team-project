@@ -1,0 +1,149 @@
+﻿@using Website.Models.Web;
+@model BooksSearchAndResult
+
+@{
+    ViewData["Title"] = "My Favorites";
+
+    string checkedForRating(decimal? rating, decimal value)
+    {
+        return rating == value ? "checked" : string.Empty;
+    }
+
+    string formatRatingValue(decimal rating)
+    {
+        var dInt = Math.Floor(rating);
+        if (dInt == rating)
+            return ((int)dInt).ToString();
+        else
+            return rating.ToString();
+    }
+}
+
+@section Style{
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/like-page.css">
+}
+
+@section HeaderContent {
+    <div class="header_content">
+        <div class="header_content-inner">
+            <div class="header-logo">
+                <img src="/img/main-logo.png" alt="logo">
+            </div>
+            <div class="header-content-input">
+                <form>
+                    <input class="content_input" oninput="return showicon()" type="text" name="Text" placeholder="Search book" maxlength="150" value="@Model.Request.Text">
+                    <div class="input_close">
+                        <span class="fa fa-close" title="delete"></span>
+                    </div>
+                    <button class="header_content-search" type="submit" title="search">&#x1F50E;</button>
+                </form>
+            </div>
+            <ul class="header_content-items">
+                <li class="header_content-self">
+                    <a class="header_content-link header_content-link--user" href="#">
+                        <svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.43483 0.496338C5.1832 0.496338 2.53045 3.35543 2.53045 6.85997C2.53045 9.05088 3.56793 10.9963 5.14018 12.1445C2.13148 13.5354 0 16.7536 0 20.4963H1.68697C1.68697 16.4691 4.6982 13.2236 8.43483 13.2236C12.1715 13.2236 15.1827 16.4691 15.1827 20.4963H16.8697C16.8697 16.7536 14.7382 13.5363 11.7295 12.1436C12.5319 11.5598 13.1894 10.7729 13.6443 9.85178C14.0993 8.93069 14.3379 7.90346 14.3392 6.85997C14.3392 3.35543 11.6865 0.496338 8.43483 0.496338ZM8.43483 2.31452C10.7738 2.31452 12.6522 4.33907 12.6522 6.85997C12.6522 9.38088 10.7738 11.4054 8.43483 11.4054C6.09585 11.4054 4.21741 9.38088 4.21741 6.85997C4.21741 4.33907 6.09585 2.31452 8.43483 2.31452Z"
+                                  fill="#393280" />
+                        </svg>
+                    </a>
+                </li>
+                <span class="stick_header"> | </span>
+                <li class="header_content-self">
+                    <a class="header_content-link" href="#">
+                        <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.93902 0.496338C5.96844 0.496338 4.35092 2.23018 4.35092 4.34249V5.11172H0.807321L0.762829 5.83326L0.0452101 19.6794L0 20.4963H15.8773L15.8328 19.6786L15.1152 5.83249L15.07 5.11172H11.5271V4.34249C11.5271 2.23018 9.9096 0.496338 7.93902 0.496338ZM7.93902 2.0348C8.50999 2.0348 9.05758 2.27793 9.46132 2.71071C9.86506 3.14348 10.0919 3.73045 10.0919 4.34249V5.11172H5.78616V4.34249C5.78616 3.73045 6.01298 3.14348 6.41672 2.71071C6.82046 2.27793 7.36805 2.0348 7.93902 2.0348V2.0348ZM2.15286 6.65018H4.35092V8.95788H5.78616V6.65018H10.0919V8.95788H11.5271V6.65018H13.7252L14.3531 18.9579H1.52566L2.15286 6.65018Z"
+                                  fill="#393280" />
+                        </svg>
+                    </a>
+                </li>
+                <span class="stick_header"> | </span>
+                <li class="header_content-self">
+                    <a class="header_content-link" href="@Url.Action("Index", "MyFavorites")">
+                        <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.09519 12.0359C0.148184 8.77661 0.797187 3.88765 4.0422 2.25799C7.28721 0.628339 9.23422 3.88765 9.88322 5.5173C10.5322 3.88765 13.1282 0.628339 16.3732 2.25799C19.6183 3.88765 19.6183 8.77661 17.6712 12.0359C15.7242 15.2952 9.88322 21.8138 9.88322 21.8138C9.88322 21.8138 4.0422 15.2952 2.09519 12.0359Z"
+                                  stroke="#393280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+
+<section class="loading">
+    <div class="loader_inner">
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <circle id="test" cx="40" cy="40" r="32"></circle>
+            </svg>
+        </div>
+        <div class="loader triangle">
+            <svg viewBox="0 0 86 80">
+                <polygon points="43 8 79 72 7 72"></polygon>
+            </svg>
+        </div>
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <rect x="8" y="8" width="64" height="64"></rect>
+            </svg>
+        </div>
+    </div>
+</section>
+<section class="liked-books">
+    <div class="container">
+        <div class="liked-content">
+            @for (var i = 0; i < Model.Result.Count; i++)
+            {
+                var bookInfo = Model.Result[i];
+                <div class="liked_inner liked_inner--@(i<Model.Result.Count-1?"1":"5")">
+                    <div class="liked_img-box">
+                        <a href="@Url.Action("Index", "Book", new { bookInfo.Id })">
+                            <img src="@bookInfo.Image_URL_M" alt="1st book">
+                            <img class="like_page-background" src="/img/footer-logo.png" alt="backgroung-logo">
+                        </a>
+                    </div>
+                    <div class="liked_bio">
+                        <h3 class="liked_title">@bookInfo.Title</h3>
+                        <p class="liked_author">@bookInfo.Author</p>
+                        <p class="liked-bio"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, architecto.</p>
+                        <p class="liked_price ">$@bookInfo.Price</p>
+                    </div>
+                    <div class="star">
+                        <fieldset class="rating" id="rating_@bookInfo.Id">
+                            <input type="radio" id="star5_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="5" @checkedForRating(bookInfo.Rating, 5) /><label for="star5_@bookInfo.Id" class="full"
+                                                                                                                                                                  title="awesome"></label>
+                            <input type="radio" id="star4.5_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="4.5" @checkedForRating(bookInfo.Rating, 4.5m) /><label for="star4.5_@bookInfo.Id"
+                                                                                                                                                                         class="half"></label>
+                            <input type="radio" id="star4_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="4" @checkedForRating(bookInfo.Rating, 4) /><label for="star4_@bookInfo.Id" class="full"></label>
+                            <input type="radio" id="star3.5_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="3.5" @checkedForRating(bookInfo.Rating, 3.5m) /><label for="star3.5_@bookInfo.Id"
+                                                                                                                                                                         class="half"></label>
+                            <input type="radio" id="star3_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="3" @checkedForRating(bookInfo.Rating, 3) /><label for="star3_@bookInfo.Id" class="full"
+                                                                                                                                                                  title="enjoyable"></label>
+                            <input type="radio" id="star2.5_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="2.5" @checkedForRating(bookInfo.Rating, 2.5m) /><label for="star2.5_@bookInfo.Id"
+                                                                                                                                                                         class="half"></label>
+                            <input type="radio" id="star2_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="2" @checkedForRating(bookInfo.Rating, 2) /><label for="star2_@bookInfo.Id" class="full"></label>
+                            <input type="radio" id="star1.5_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="1.5" @checkedForRating(bookInfo.Rating, 1.5m) /><label for="star1.5_@bookInfo.Id"
+                                                                                                                                                                         class="half"></label>
+                            <input type="radio" id="star1_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="1" @checkedForRating(bookInfo.Rating, 1) /><label for="star1_@bookInfo.Id" class="full"></label>
+                            <input type="radio" id="star0.5_@bookInfo.Id" name="radio_rating_@bookInfo.Id" value="0.5" @checkedForRating(bookInfo.Rating, 0.5m) /><label for="star0.5_@bookInfo.Id" class="half"
+                                                                                                                                                                         title="dislike"></label>
+                        </fieldset>
+                        <br>
+                        <h4 id="rating-value_@bookInfo.Id" class="rating_num">
+                            @Html.Raw(bookInfo.Rating.HasValue ? $"{formatRatingValue(bookInfo.Rating.Value)} out of 5" : String.Empty)
+                        </h4>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+@section Script {
+    <script src="/js/ratings.js"></script>
+    <script src="/js/like-page.js"></script>
+}

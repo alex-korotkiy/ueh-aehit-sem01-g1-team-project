@@ -10,6 +10,15 @@
     {
         return rating == value ? "checked" : string.Empty;
     }
+
+    string formatRatingValue(decimal rating)
+    {
+        var dInt = Math.Floor(rating);
+        if (dInt == rating)
+            return ((int)dInt).ToString();
+        else
+            return rating.ToString();
+    }
 }
 @if (Model != null)
 {
@@ -47,7 +56,7 @@
                             </fieldset>
                             <br>
                             <h3 id="rating-value" class="rating_num">
-                                @Html.Raw(Model.Rating.HasValue?$"{Model.Rating.Value} out of 5":String.Empty)
+                                @Html.Raw(Model.Rating.HasValue?$"{formatRatingValue(Model.Rating.Value)} out of 5":String.Empty)
                             </h3>
                         </div>
                         <p class="book_bio">
