@@ -215,6 +215,7 @@ html, body{
   .liked_title {
 font-weight: 600;
 font-size: 18px;
+hyphens: auto;
 line-height: 22px;
 text-transform: capitalize;
 color: #393280;
@@ -233,6 +234,9 @@ color: #173F5F;
     line-height: 20px;
     letter-spacing: 1.2px;
     color: #767070;
+  }
+  .liked_bio{
+    max-width: 670px;
   }
   .liked_price {
 font-weight: 700;
