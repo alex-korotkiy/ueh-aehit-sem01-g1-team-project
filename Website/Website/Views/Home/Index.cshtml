@@ -69,7 +69,6 @@
     var startItem = firstItem != null ? firstItem.RowNumber: 0;
     var lastItem = Model.Result.LastOrDefault();
     var endItem = lastItem != null ? lastItem.RowNumber : 0;
-    var totalItems = lastItem!=null ? lastItem.TotalCount : 0;
 
     string PrevPageLink()
     {
@@ -144,7 +143,7 @@
     <div class="container">
         <div class="book_list-text">
             <p class="list_text list_text--s">Sort by : <button onclick="showList()" class="btn_show-list" id="btn_show-list" type="button">@currentSortValue</button></p>
-            <p class="list_text list_text--s">Showing @startItem - @endItem of @totalItems result(s)</p>
+            <p class="list_text list_text--s">Showing @startItem - @endItem of @Model.TotalItems result(s)</p>
             <p class="list_text list_text--s">Show : @Model.Result.Count</p>
             <div class="show_list" id="show_list">
                 <div class="show_list-inner">

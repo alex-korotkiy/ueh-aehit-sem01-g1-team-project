@@ -13,6 +13,8 @@ namespace Website.Infrastructure.Repositories
 {
     public class BooksRepository : BaseRepository, IBooksRepository
     {
+        public const int MaxSearchResults = 2000;
+
         protected BookInfo AdjustRating(BookInfo book)
         {
             book.Rating = book.Rating / 2 + 2.5m;
@@ -27,7 +29,9 @@ namespace Website.Infrastructure.Repositories
 
             var sortType = (BookSortType)request.SortType;
 
-            var baseSelect = $"SELECT bl.*,";
+            var topCount = Math.Max(MaxSearchResults, request.Start + request.Count) + 1;
+
+            var baseSelect = $"SELECT TOP {topCount} bl.*,";
             var fromPart = "vBooksList bl";
 
             if (sortType == BookSortType.Popularity)
@@ -60,8 +64,10 @@ namespace Website.Infrastructure.Repositories
             if (request.SortOrder != 0) orderBy = orderBy + " DESC";
 
             
-            baseSelect = baseSelect + $" RowNumber = ROW_NUMBER() OVER (ORDER BY {orderBy}), TotalCount = COUNT(1) OVER() FROM {fromPart}";
-            return $"WITH x AS ({baseSelect}) SELECT * FROM x WHERE RowNumber >= @StartRow AND RowNumber <= @EndRow ORDER BY RowNumber";
+            baseSelect = baseSelect + $" RowNumber = ROW_NUMBER() OVER (ORDER BY {orderBy}) FROM {fromPart}";
+            return $"WITH x AS ({baseSelect})," +
+                $"y AS (SELECT x.*, TotalCount = COUNT(1) OVER() FROM x)" +
+                $" SELECT * FROM y WHERE RowNumber >= @StartRow AND RowNumber <= @EndRow ORDER BY RowNumber";
 
         }
 
