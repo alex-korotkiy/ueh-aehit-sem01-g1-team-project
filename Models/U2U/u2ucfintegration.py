@@ -1,6 +1,7 @@
 import unittest
 import pandas as pd
 import os
+import time
 from u2ucf import *
 
 class RecommenderTests(unittest.TestCase):
@@ -53,5 +54,13 @@ class RecommenderTests(unittest.TestCase):
         recommendation = self.recommender.recommend(7)
         self.assertListEqual(recommendation, [3022, 19640, 17191, 20647, 19955, 3600, 37, 4543, 9753, 469, 90, 8229, 1150, 33591, 33997, 207232, 207267, 9577, 184440, 61729])
 
+    def testPerformance(self):
+        iterations = 1000
+        startTime = time.time()
+        for i in range(iterations):
+            recommendation = self.recommender.recommend(i)
+        endTime = time.time()
+        elapsed = endTime - startTime
+        print(f"Completed {iterations} recommendations in {elapsed} second(s). {elapsed/iterations}s per recommendation.")    
 
 
