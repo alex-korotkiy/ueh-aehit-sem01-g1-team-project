@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Exceptions\" />
+    <Folder Include="wwwroot\webfonts\" />
   </ItemGroup>
 
 </Project>
