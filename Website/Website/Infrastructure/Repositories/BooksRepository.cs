@@ -24,7 +24,6 @@ namespace Website.Infrastructure.Repositories
         protected string GetSearchSql(BookSearchRequest request)
         {
 
-
             request.Correct();
 
             var sortType = (BookSortType)request.SortType;
@@ -63,8 +62,21 @@ namespace Website.Infrastructure.Repositories
             var orderBy = sortType.ToString();
             if (request.SortOrder != 0) orderBy = orderBy + " DESC";
 
-            
+            var whereParts = new List<String>();
+
+            if (request.AuthorId.HasValue)
+            {
+                whereParts.Add($"bl.AuthorId = {request.AuthorId.Value}");
+            }
+
+            var wherePart = string.Join(" AND ", whereParts);
+
             baseSelect = baseSelect + $" RowNumber = ROW_NUMBER() OVER (ORDER BY {orderBy}) FROM {fromPart}";
+            if (!string.IsNullOrEmpty(wherePart))
+            {
+                baseSelect = baseSelect + $" WHERE {wherePart}";
+            }
+
             return $"WITH x AS ({baseSelect})," +
                 $"y AS (SELECT x.*, TotalCount = COUNT(1) OVER() FROM x)" +
                 $" SELECT * FROM y WHERE RowNumber >= @StartRow AND RowNumber <= @EndRow ORDER BY RowNumber";
