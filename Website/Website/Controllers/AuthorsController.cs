@@ -44,7 +44,7 @@ namespace Website.Controllers
             ViewData["Recommendations"] = recommendationsRepository.GetForUser(lngUserId);
 
             var authors = authorsRepository.GetAuthors(id);
-            return Json(authors);
+            return View(authors);
         }
     }
 }
