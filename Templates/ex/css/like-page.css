@@ -205,6 +205,7 @@ html, body{
 
   .liked_inner{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     padding-top: 30px;
@@ -254,6 +255,9 @@ position: absolute;
 top: 20%; 
 left: 10%;
 z-index: -1;
+}
+.like_back{
+  padding-left: 15px;
 }
 
   /* =========================like-book-rate============================= */
