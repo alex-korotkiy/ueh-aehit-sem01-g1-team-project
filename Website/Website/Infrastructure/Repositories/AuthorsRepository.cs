@@ -13,17 +13,23 @@ namespace Website.Infrastructure.Repositories
         protected List<string> filtersList;
         protected Dictionary<string, int> filterIndexes;
 
-        public AuthorsRepository(string connectionString) : base(connectionString)
+        public static List<string> GetFiltersList()
         {
-            filtersList = new List<string>();
-            filterIndexes = new Dictionary<string, int>();
-            filtersList.Add("0-9");
+            var result = new List<string>();
+            result.Add("0-9");
 
             var startCode = (int)'A';
             for (var i = 0; i < 26; i++)
             {
-                filtersList.Add(((char)(startCode + i)).ToString());
+                result.Add(((char)(startCode + i)).ToString());
             }
+
+            return result;
+        }
+        public AuthorsRepository(string connectionString) : base(connectionString)
+        {
+            filtersList = GetFiltersList();
+            filterIndexes = new Dictionary<string, int>();
 
             for (var i = 0; i < filtersList.Count; i++)
             {
