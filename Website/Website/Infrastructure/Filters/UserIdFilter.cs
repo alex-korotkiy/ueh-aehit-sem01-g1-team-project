@@ -13,9 +13,12 @@ namespace Website.Infrastructure.Filters
         protected Guid UserId;
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            var cookieOptions = new CookieOptions();
-            cookieOptions.Expires = DateTime.Now.AddYears(1);
-            cookieOptions.Path = "/";
+            var cookieOptions = new CookieOptions {
+                SameSite = SameSiteMode.Strict,
+                HttpOnly = true,
+                Expires = DateTime.Now.AddYears(1),
+                Path = "/"
+            };
 
             context.HttpContext.Response.Cookies.Append(cookieName, UserId.ToString(), cookieOptions);
         }
