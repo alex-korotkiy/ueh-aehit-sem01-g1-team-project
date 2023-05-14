@@ -34,6 +34,7 @@ namespace Website
             services.AddTransient<IUsersRepository, UsersRepository>(provider => new UsersRepository(connectionString));
             services.AddTransient<IRecommendationsRepository, RecommendationsRepository>(provider => new RecommendationsRepository(connectionString));
             services.AddTransient<IRatingsRepository, RatingsRepository>(provider => new RatingsRepository(connectionString));
+            services.AddTransient<IAuthorsRepository, AuthorsRepository>(provider => new AuthorsRepository(connectionString));
 
             services.AddControllersWithViews();
             services.AddMvc(options =>

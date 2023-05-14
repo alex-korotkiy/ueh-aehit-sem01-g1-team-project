@@ -15,6 +15,7 @@ namespace Website.Models.Converters
             {
                 Text = request.Text, 
                 RatedOnly = request.RatedOnly,
+                AuthorId = request.AuthorId,
                 Start = request.Start,
                 Count = request.Count
             };
