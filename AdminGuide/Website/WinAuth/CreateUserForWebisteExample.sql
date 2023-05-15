@@ -2,8 +2,8 @@ use [master]
 
 GO
 
-if not exists(select * from syslogins where [name] = 'website_win_user')
-create login [website_win_user] from windows
+if not exists(select * from syslogins where [name] = 'domain\website_win_user')
+create login [domain\website_win_user] from windows
 
 GO
 
@@ -12,7 +12,7 @@ use [BooksWebsite]
 go
 
 if not exists(select * from sysusers where name = 'website_win_user')
-create user [website_win_user] for login [website_win_user]
+create user [website_win_user] for login [domain\website_win_user]
 
 go
 
