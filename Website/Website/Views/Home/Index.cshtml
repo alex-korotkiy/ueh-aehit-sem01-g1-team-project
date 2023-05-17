@@ -3,14 +3,6 @@
 @model BooksSearchAndResult
 @{
     ViewData["Title"] = "Home Page";
-
-    string RatedLink(bool flag)
-    {
-        var newRequest = Model.Request.MemberwiseClone();
-        newRequest.RatedOnly = flag ? 1 : 0;
-        newRequest.Start = 1;
-        return Url.Action("Index", "Home", newRequest);
-    }
 }
 
 @section Style {

@@ -18,4 +18,10 @@
     <Folder Include="wwwroot\webfonts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="run.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
