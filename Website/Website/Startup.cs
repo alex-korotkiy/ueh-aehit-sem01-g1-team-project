@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,17 +37,22 @@ namespace Website
             services.AddTransient<IRatingsRepository, RatingsRepository>(provider => new RatingsRepository(connectionString));
             services.AddTransient<IAuthorsRepository, AuthorsRepository>(provider => new AuthorsRepository(connectionString));
 
+
             services.AddControllersWithViews();
             services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(UserIdFilter));
                 options.ValueProviderFactories.Add(new CookieValueProviderFactory());
             });
+
+            services.AddMemoryCache();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,6 +75,7 @@ namespace Website
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
